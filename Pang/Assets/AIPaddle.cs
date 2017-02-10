@@ -6,7 +6,7 @@ public class AIPaddle : MonoBehaviour {
 
     public GameObject ballTarget;
 
-    [Range(0,10f)]
+
     public float aiPlayerSpeed;
 
 	// Use this for initialization
@@ -18,6 +18,7 @@ public class AIPaddle : MonoBehaviour {
 	void Update ()
     {
         AIBehaviour();
+        aiPlayerSpeed = GameManager.Instance.paddleDifficultyAmount;
 	}
 
     void AIBehaviour()
