@@ -17,11 +17,13 @@ using UnityEngine;
 /// <summary>
 /// Provides and logs versioning information for the GVR Unity SDK.
 /// </summary>
-public class GvrUnitySdkVersion {
-  private const string VERSION_HEADER = "GVR Unity SDK Version: ";
+public class GvrUnitySdkVersion
+{
+    private const string VERSION_HEADER = "GVR Unity SDK Version: ";
 
-  [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-  static void LogGvrUnitySdkVersion() {
-    Debug.Log(VERSION_HEADER + GvrViewer.GVR_SDK_VERSION);
-  }
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void LogGvrUnitySdkVersion()
+    {
+        Debug.Log(VERSION_HEADER + GvrViewer.GVR_SDK_VERSION);
+    }
 }
