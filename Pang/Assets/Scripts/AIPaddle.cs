@@ -25,7 +25,7 @@ public class AIPaddle : MonoBehaviour
                 {
                     if (Gameplay.Instance.CurrentServer == controlledPaddle)
                     {
-                        controlledPaddle.Serve();
+                        Invoke("Serve", 0.5f);
                     }
                     break;
                 }
@@ -35,5 +35,10 @@ public class AIPaddle : MonoBehaviour
                     break;
                 }
         }
+    }
+
+    void Serve()
+    {
+        controlledPaddle.Serve();
     }
 }
