@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4061340148092104}
-  - component: {fileID: 114146559802796690}
+  - component: {fileID: 114166513797031046}
   m_Layer: 0
   m_Name: GamePlay
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114146559802796690
+--- !u!114 &114166513797031046
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,17 +48,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1839441851744764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e08355d8a86535b4f80e034979729a9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2454e1e57cd6d5a45bf0f869f45db35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballObj: {fileID: 0}
-  ballSpawnPlayer: {fileID: 0}
-  ballSpawnAI: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  playerPaddle: {fileID: 0}
   playerScore: 0
   aiScore: 0
   playerHits: 0
+  targetScore: 0
   matchTimer: 0
-  serveThrust: 100
+  serveThrust: 0
   superHitThrust: 0
+  matchPlaying: 0
+  isPaused: 0
+  toServe: 0
+  aiToServe: 0
+  ball: {fileID: 0}
+  activePaddles: []
