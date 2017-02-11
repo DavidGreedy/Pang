@@ -856,7 +856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitDir: {x: 0, y: 0, z: 1}
-  speed: 100
+  speed: 3
   zPosition: 8
   hitForce: 10
   score: {fileID: 1794763277}
