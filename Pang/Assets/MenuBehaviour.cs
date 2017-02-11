@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuBehaviour : MonoBehaviour {
 
     public GameObject[] menuPanels;
+    public Text scoreText;
+
 
 	// Use this for initialization
-	void Start () {
-		
-	}
+	void Start ()
+    {
+        scoreText.text = GameManager.targetScore.ToString();
+    }
 
     public void StartMenu()
     {
@@ -60,4 +64,32 @@ public class MenuBehaviour : MonoBehaviour {
     {
         Application.Quit();
     }
+
+    #region SCORE BUTTONS
+
+    public void Addscore(int value)
+    {
+        if (GameManager.targetScore + value > 20)
+        {
+            GameManager.targetScore = 20;
+            scoreText.text = GameManager.targetScore.ToString();
+        }
+        else
+        {
+            GameManager.targetScore += value;
+            scoreText.text = GameManager.targetScore.ToString();
+        }
+            
+    }
+
+    public void MinusScore(int value)
+    {
+        if (GameManager.targetScore != 5)
+        {
+            GameManager.targetScore -= value;
+            scoreText.text = GameManager.targetScore.ToString();
+        }
+    }
+
+    #endregion
 }

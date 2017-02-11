@@ -13,6 +13,8 @@ public class PaddleController : MonoBehaviour
     [SerializeField]
     Vector3 paddleFaceDir = Vector3.forward;
 
+    public Gameplay _gamePlay;
+
     void Start()
     {
 
@@ -22,5 +24,16 @@ public class PaddleController : MonoBehaviour
     {
         paddleGameObject.transform.position = Vector3.ProjectOnPlane(transform.forward * paddleDistance, paddleFaceDir) + (paddleFaceDir * paddleDistance);
         paddleGameObject.transform.forward = paddleFaceDir;
+
+
+        if (Input.GetMouseButton(0))
+        {
+            if (Gameplay.toServe)
+            {
+                _gamePlay.ServeBall();
+            }
+        }
     }
+
+    
 }

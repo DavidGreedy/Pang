@@ -18,13 +18,30 @@ public class AIPaddle : MonoBehaviour {
 	void Update ()
     {
         AIBehaviour();
-        aiPlayerSpeed = GameManager.Instance.paddleDifficultyAmount;
+        //aiPlayerSpeed = GameManager.Instance.paddleDifficultyAmount;
 	}
 
     void AIBehaviour()
     {
-        Mathf.MoveTowards(this.transform.position.x, ballTarget.transform.position.x, aiPlayerSpeed);
-        Mathf.MoveTowards(this.transform.position.y, ballTarget.transform.position.y, aiPlayerSpeed);
+        //if (GameState.Instance._gameState == GameState.CurrentGameState.Game)
+        {
+            if (Gameplay.matchPlaying)
+            {
+                {
+                    if (ballTarget.transform.position.y > this.transform.position.y)
+                        transform.Translate(new Vector3(0, aiPlayerSpeed, 0) * Time.deltaTime);
+
+                    if (ballTarget.transform.position.y < this.transform.position.y)
+                        transform.Translate(new Vector3(0, -aiPlayerSpeed, 0) * Time.deltaTime);
+
+                    if (ballTarget.transform.position.x > this.transform.position.x)
+                        transform.Translate(new Vector3(-aiPlayerSpeed, 0, 0) * Time.deltaTime);
+
+                    if (ballTarget.transform.position.x < this.transform.position.x)
+                        transform.Translate(new Vector3(aiPlayerSpeed, 0, 0) * Time.deltaTime);
+                }
+            }
+        }
     }
 
 }

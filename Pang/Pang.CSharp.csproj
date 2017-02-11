@@ -73,9 +73,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Google.ProtocolBuffers">
-      <HintPath>Assets\Plugins\Google.ProtocolBuffers.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Pang.CSharp.Plugins.csproj">
@@ -87,6 +84,7 @@
     <Compile Include="Assets\AIPaddle.cs" />
     <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\GameState.cs" />
+    <Compile Include="Assets\Gameplay.cs" />
     <Compile Include="Assets\GoogleVR\Demos\Scripts\DemoInputManager.cs" />
     <Compile Include="Assets\GoogleVR\Demos\Scripts\GVRDemo\Teleport.cs" />
     <Compile Include="Assets\GoogleVR\Demos\Scripts\PermissionsDemo\PermissionsFlowManager.cs" />
