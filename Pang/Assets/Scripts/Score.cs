@@ -4,7 +4,7 @@ public class Score : ListComponent<Score>
 {
     private int score;
 
-    public event Action<int> OnScore;
+    public event Action OnScore;
 
     public int ScoreValue { get { return score; } }
 
@@ -13,7 +13,7 @@ public class Score : ListComponent<Score>
         score += amount;
         if (OnScore != null)
         {
-            OnScore.Invoke(score);
+            OnScore.Invoke();
         }
     }
 }

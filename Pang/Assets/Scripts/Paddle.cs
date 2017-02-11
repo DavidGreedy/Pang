@@ -29,19 +29,26 @@ public class Paddle : MonoBehaviour
         get { return zPosition; }
     }
 
+    [SerializeField]
+    private float hitForce;
+
     public event Action OnHit;
+    public event Action OnServe;
 
     private Vector3 targetPosition;
 
+    [SerializeField]
+    private Score score;
+    public Score ScoreObject { get { return score; } }
+
     public Vector3 ServePosition
-    { get { return transform.position + HitDirection; } }
+    { get { return transform.position + (HitDirection * 0.5f); } }
 
     private void Start()
     {
         transform.forward = hitDir;
         OnHit += DrawBounceVel;
         Gameplay.Instance.AddPaddle(this);
-        Gameplay.Instance.OnServe += Serve;
     }
 
     public void SetTargetPos(Vector2 position)
@@ -62,16 +69,18 @@ public class Paddle : MonoBehaviour
 
     private IEnumerator DrawBallBounceVel()
     {
-        Debug.DrawLine(transform.position, targetPosition, Color.magenta);
-        yield return new WaitForSeconds(3f);
+        while (true)
+        {
+            Debug.DrawLine(transform.position, targetPosition, Color.magenta);
+            yield return new WaitForSeconds(3f);
+        }
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Ball")
         {
-            print(1);
-            Gameplay.Instance.ball.Hit(this);
+            Gameplay.Instance.ball.Hit(this, HitDirection, hitForce);
             if (OnHit != null)
             {
                 OnHit.Invoke();
@@ -84,7 +93,11 @@ public class Paddle : MonoBehaviour
         print("Serve");
         Ball ball = Gameplay.Instance.ball;
         ball.transform.parent = null;
-        ball.Hit(this);
+        ball.Hit(this, HitDirection, hitForce);
+        if (OnServe != null)
+        {
+            OnServe.Invoke();
+        }
     }
 
     public void SetServer(Ball ball)

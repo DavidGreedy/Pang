@@ -32,13 +32,23 @@ public class Ball : MonoBehaviour
 
     }
 
-    public void Hit(Paddle paddle)
+    public void Hit(Paddle paddle, Vector3 direction, float force)
     {
         bouncePaddle = paddle;
-        if (transform.parent == paddle.transform)
+        rigidbody.velocity = direction * force;
+    }
+
+    public void Score(int score)
+    {
+        bouncePaddle.ScoreObject.AddScore(score);
+        rigidbody.velocity = Vector3.zero;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "ScoringVolume")
         {
-            transform.parent = null;
+            Score(1);
         }
-        rigidbody.AddForce(paddle.HitDirection * paddle.Speed, ForceMode.Impulse);
     }
 }
