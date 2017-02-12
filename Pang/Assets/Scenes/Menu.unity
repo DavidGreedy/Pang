@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 617d9be015db68348a623b01ea51a8c5, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -4020,8 +4020,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1700433217}
   m_LocalRotation: {x: -0.011612995, y: -0, z: -0, w: 0.9999326}
-  m_LocalPosition: {x: 0.005004883, y: 1.024, z: 1.939}
-  m_LocalScale: {x: 1.5896108, y: 1.4604453, z: 1}
+  m_LocalPosition: {x: 0.005004883, y: 1.01, z: 1.45}
+  m_LocalScale: {x: 1.5896108, y: 1.4604453, z: 0.042845685}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
