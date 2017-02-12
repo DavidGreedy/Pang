@@ -43,6 +43,7 @@ public class Gameplay : Singleton<Gameplay>
     private void Awake()
     {
         base.Awake();
+        targetScore = GameManager.paddleDifficultyAmount;
         activePaddles = new List<Paddle>();
     }
 

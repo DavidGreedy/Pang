@@ -37,6 +37,9 @@ public class Paddle : MonoBehaviour
 
     private Vector3 targetPosition;
 
+    public bool boostTokenActive;
+    public int boostTokensRemaining;
+
     [SerializeField]
     private Score score;
     public Score ScoreObject { get { return score; } }
@@ -48,6 +51,7 @@ public class Paddle : MonoBehaviour
     {
         transform.forward = hitDir;
         OnHit += DrawBounceVel;
+        boostTokensRemaining = GameManager.boostTokenAmt;
         Gameplay.Instance.AddPaddle(this);
     }
 

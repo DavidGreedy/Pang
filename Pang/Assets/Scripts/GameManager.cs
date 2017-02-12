@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager> {
 
-    [Range(0, 10f)]
-    public int paddleDifficultyAmount;
 
-    [Range(5, 20f)]
-    public static int targetScore;
+    public static int paddleDifficultyAmount, targetScore, boostTokenAmt;
+    public static float paddleScale;
+
+
+    public enum GameDiff {Normal, Hard}
+    public static GameDiff _gameDiff;
 
 	// Use this for initialization
 	void Start ()
@@ -21,4 +23,25 @@ public class GameManager : Singleton<GameManager> {
 	void Update () {
 		
 	}
+
+    public void SetUp( int _gameMode)
+    { 
+
+        switch (_gameMode)
+        {
+            case 0:
+                _gameDiff = GameDiff.Normal;
+                paddleDifficultyAmount = 10;
+                boostTokenAmt = 10;
+                paddleScale = 1;
+                break;
+
+            case 1:
+                _gameDiff = GameDiff.Hard;
+                paddleDifficultyAmount = 10;
+                boostTokenAmt = 5;
+                paddleScale = 0.5f;
+                break;
+        }
+    }
 }

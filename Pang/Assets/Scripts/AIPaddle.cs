@@ -4,11 +4,18 @@ public class AIPaddle : MonoBehaviour
 {
     public GameObject ballTarget;
     public float aiPlayerSpeed;
+
+
+    public bool boostTokenActive;
+    public int boostTokensRemaining;
+
+
     public Paddle controlledPaddle;
 
     private void Awake()
     {
-        controlledPaddle.Speed = aiPlayerSpeed;
+        boostTokensRemaining = GameManager.boostTokenAmt;
+        controlledPaddle.Speed = GameManager.paddleDifficultyAmount;
     }
 
     void Update()

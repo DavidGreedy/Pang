@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MenuBehaviour : MonoBehaviour {
 
     public GameObject[] menuPanels;
-    public Text scoreText;
+    public Text scoreText, descText;
 
 
 	// Use this for initialization
@@ -92,4 +92,16 @@ public class MenuBehaviour : MonoBehaviour {
     }
 
     #endregion
+
+
+    public void ShowText(string text)
+    {
+        descText.enabled = true;
+        descText.text = text;
+    }
+
+    public void HideText()
+    {
+        descText.enabled = false;
+    }
 }
