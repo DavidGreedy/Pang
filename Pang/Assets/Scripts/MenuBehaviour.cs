@@ -6,13 +6,15 @@ using UnityEngine.UI;
 public class MenuBehaviour : MonoBehaviour {
 
     public GameObject[] menuPanels;
+    public GameObject recentreText;
     public Text scoreText, descText;
 
 
 	// Use this for initialization
 	void Start ()
     {
-        scoreText.text = GameManager.targetScore.ToString();
+        
+        
     }
 
     public void StartMenu()
@@ -46,6 +48,7 @@ public class MenuBehaviour : MonoBehaviour {
     {
         foreach (GameObject panels in menuPanels)
         {
+            scoreText.text = GameManager.targetScore.ToString();
             panels.SetActive(false);
         }
         menuPanels[3].SetActive(true);
@@ -104,4 +107,25 @@ public class MenuBehaviour : MonoBehaviour {
     {
         descText.enabled = false;
     }
+
+    public void RecentreTextShow()
+    {
+        recentreText.SetActive(true);
+    }
+
+    public void RecentreTextHide()
+    {
+        recentreText.SetActive(false);
+    }
+
+    public void InvokeRecenter()
+    {
+        Invoke("RecenterView", 3f);
+    }
+
+    void RecenterView()
+    {
+        GvrViewer.Instance.Recenter();
+    }
+
 }
