@@ -128,7 +128,9 @@ public class Gameplay : Singleton<Gameplay>
     {
         for (int i = 0; i < activePaddles.Count; i++)
         {
-            scoreUIList[i].text = activePaddles[i].name + " : " + activePaddles[i].ScoreObject.ScoreValue.ToString();
+            scoreUIList[i].text = activePaddles[i].ScoreObject.ScoreValue.ToString();
         }
+            scoreUIList[2].text = activePaddles[1].ScoreObject.ScoreValue.ToString();
+            scoreUIList[3].text = activePaddles[0].ScoreObject.ScoreValue.ToString();
     }
 }
