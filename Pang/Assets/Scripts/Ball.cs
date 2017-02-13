@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -11,14 +9,9 @@ public class Ball : MonoBehaviour
     private Paddle bouncePaddle;
 
     public event Action<Paddle> OnHit;
+    public event Action OnScore;
+
     public event Action OnSpawn;
-
-    private bool isInPlay;
-
-    public bool IsInPlay
-    {
-        get { return isInPlay; }
-    }
 
     public void Spawn(Paddle paddle)
     {
@@ -29,13 +22,16 @@ public class Ball : MonoBehaviour
     {
         transform.position = position;
         rigidbody.AddForce(direction * speed, ForceMode.Impulse);
-
     }
 
     public void Hit(Paddle paddle, Vector3 direction, float force)
     {
         bouncePaddle = paddle;
         rigidbody.velocity = direction * force;
+        if (OnHit != null)
+        {
+            OnHit.Invoke(paddle);
+        }
     }
 
     public void Score(int score)

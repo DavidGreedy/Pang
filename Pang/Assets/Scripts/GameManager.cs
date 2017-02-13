@@ -2,31 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager> {
-
-
+public class GameManager : Singleton<GameManager>
+{
     public static int paddleDifficultyAmount, targetScore, boostTokenAmt;
     public static float paddleScale;
 
-
-    public enum GameDiff {Normal, Hard}
+    public enum GameDiff { Normal, Hard }
     public static GameDiff _gameDiff;
 
-	// Use this for initialization
-	void Start ()
+    void Start()
     {
         targetScore = 5;
         DontDestroyOnLoad(this);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 
-    public void SetUp( int _gameMode)
-    { 
-
+    public void SetUp(int _gameMode)
+    {
         switch (_gameMode)
         {
             case 0:

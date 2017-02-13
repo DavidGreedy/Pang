@@ -47,6 +47,14 @@ public class Paddle : MonoBehaviour
     public Vector3 ServePosition
     { get { return transform.position + (HitDirection * 0.5f); } }
 
+    private int hitCount;
+
+    public void AddHit()
+    {
+        print(name + " just hit the ball");
+        hitCount++;
+    }
+
     private void Start()
     {
         transform.forward = hitDir;

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Gameplay : Singleton<Gameplay>
 {
-    public int playerHits, targetScore;
+    public int playerHits, targetScore = 1;
 
     public float matchTimer, serveThrust, superHitThrust;
 
@@ -20,7 +21,15 @@ public class Gameplay : Singleton<Gameplay>
     public List<Paddle> activePaddles;
     private int currentServeIndex = 0;
 
-    public Paddle CurrentServer { get { return activePaddles[currentServeIndex]; } }
+    [SerializeField]
+    private SceneManagement sceneManager;
+
+    public Canvas winCanvas;
+
+    public Paddle CurrentServer
+    {
+        get { return activePaddles[currentServeIndex]; }
+    }
 
     [SerializeField]
     private bool isRandomServeOrder;
@@ -29,11 +38,11 @@ public class Gameplay : Singleton<Gameplay>
 
     public enum GameState
     {
-        SERVING, PLAYING
+        SERVING,
+        PLAYING
     }
 
     private GameState gameState;
-
 
     public GameState State
     {
@@ -45,6 +54,11 @@ public class Gameplay : Singleton<Gameplay>
         base.Awake();
         targetScore = GameManager.paddleDifficultyAmount;
         activePaddles = new List<Paddle>();
+    }
+
+    void UpdateHitCount(Paddle paddle)
+    {
+        paddle.AddHit();
     }
 
     void DecideServeOrder()
@@ -72,6 +86,7 @@ public class Gameplay : Singleton<Gameplay>
         DecideServeOrder();
         SelectNextServer();
         UpdateScoreUI();
+        ball.OnHit += UpdateHitCount;
     }
 
     void SelectNextServer()
@@ -91,6 +106,30 @@ public class Gameplay : Singleton<Gameplay>
         gameState = GameState.PLAYING;
     }
 
+    void CheckWinner()
+    {
+        for (int i = 0; i < activePaddles.Count; i++)
+        {
+            print(targetScore);
+            if (activePaddles[i].ScoreObject.ScoreValue == targetScore)
+            {
+                // PADDLE HAS WON
+                ActivateWinScreen();
+            }
+        }
+    }
+
+    void ActivateWinScreen()
+    {
+        winCanvas.gameObject.SetActive(true);
+        Invoke("OpenMenuScene", 3f);
+    }
+
+    void OpenMenuScene()
+    {
+        sceneManager.ChangeScene(0);
+    }
+
     void Update()
     {
         Debug.DrawLine(ball.transform.position, CurrentServer.transform.position);
@@ -100,26 +139,22 @@ public class Gameplay : Singleton<Gameplay>
         }
     }
 
-    void Pause()
-    {
-
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.transform.tag == "Ball")
-        {
-            if (OnHit != null)
-            {
-                OnHit.Invoke();
-            }
-        }
-    }
+    //private void OnCollisionEnter(Collision other)
+    //{
+    //    if (other.transform.tag == "Ball")
+    //    {
+    //        if (OnHit != null)
+    //        {
+    //            OnHit.Invoke();
+    //        }
+    //    }
+    //}
 
     public void AddPaddle(Paddle paddle)
     {
         activePaddles.Add(paddle);
         paddle.OnServe += OnPaddleServe;
+        paddle.ScoreObject.OnScore += CheckWinner;
         paddle.ScoreObject.OnScore += UpdateScoreUI;
         paddle.ScoreObject.OnScore += SelectNextServer;
     }
@@ -130,7 +165,15 @@ public class Gameplay : Singleton<Gameplay>
         {
             scoreUIList[i].text = activePaddles[i].ScoreObject.ScoreValue.ToString();
         }
-            scoreUIList[2].text = activePaddles[1].ScoreObject.ScoreValue.ToString();
-            scoreUIList[3].text = activePaddles[0].ScoreObject.ScoreValue.ToString();
+        scoreUIList[2].text = activePaddles[1].ScoreObject.ScoreValue.ToString();
+        scoreUIList[3].text = activePaddles[0].ScoreObject.ScoreValue.ToString();
+    }
+
+    public void ScoreSwapServer()
+    {
+        for (int i = 0; i < activePaddles.Count; i++)
+        {
+            return;
+        }
     }
 }
