@@ -92,6 +92,7 @@ public class Gameplay : Singleton<Gameplay>
     void SelectNextServer()
     {
         CurrentServer.SetServer(ball);
+        ball.gameObject.SetActive(true);
         gameState = GameState.SERVING;
     }
 
@@ -122,7 +123,7 @@ public class Gameplay : Singleton<Gameplay>
     void ActivateWinScreen()
     {
         winCanvas.gameObject.SetActive(true);
-        Invoke("OpenMenuScene", 3f);
+        Invoke("OpenMenuScene", 5f);
     }
 
     void OpenMenuScene()
@@ -150,6 +151,8 @@ public class Gameplay : Singleton<Gameplay>
     //    }
     //}
 
+
+
     public void AddPaddle(Paddle paddle)
     {
         activePaddles.Add(paddle);
@@ -161,6 +164,7 @@ public class Gameplay : Singleton<Gameplay>
 
     public void UpdateScoreUI()
     {
+        print("UPDATING SCORE UI");
         for (int i = 0; i < activePaddles.Count; i++)
         {
             scoreUIList[i].text = activePaddles[i].ScoreObject.ScoreValue.ToString();

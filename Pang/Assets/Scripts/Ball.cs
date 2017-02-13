@@ -36,8 +36,9 @@ public class Ball : MonoBehaviour
 
     public void Score(int score)
     {
-        bouncePaddle.ScoreObject.AddScore(score);
         rigidbody.velocity = Vector3.zero;
+        bouncePaddle.ScoreObject.AddScore(score);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
