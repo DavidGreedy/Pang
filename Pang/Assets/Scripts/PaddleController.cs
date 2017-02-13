@@ -6,7 +6,7 @@ public class PaddleController : MonoBehaviour
 
     void Update()
     {
-        controlledPaddle.transform.position = (Vector3.ProjectOnPlane(transform.forward * controlledPaddle.PosZ, controlledPaddle.HitDirection) + (controlledPaddle.HitDirection * controlledPaddle.PosZ));
+        controlledPaddle.SetPosition((Vector3.ProjectOnPlane(transform.forward * controlledPaddle.PosZ, controlledPaddle.HitDirection) + (controlledPaddle.HitDirection * controlledPaddle.PosZ)));
 
         if (Input.GetMouseButton(0) && Gameplay.Instance.CurrentServer == controlledPaddle)
         {

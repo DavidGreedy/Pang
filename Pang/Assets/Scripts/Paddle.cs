@@ -49,6 +49,15 @@ public class Paddle : MonoBehaviour
 
     private int hitCount;
 
+    public enum ClampMode
+    {
+        SQUARE, CIRCLE
+    }
+
+    public float clampValue;
+
+    public ClampMode clampMode;
+
     public void AddHit()
     {
         //print(name + " just hit the ball");
@@ -67,6 +76,47 @@ public class Paddle : MonoBehaviour
     {
         targetPosition = new Vector3(position.x, position.y, zPosition);
         transform.Translate((targetPosition - transform.position).normalized * speed * Time.deltaTime, Space.World);
+    }
+
+    public void SetPosition(Vector2 position)
+    {
+        switch (clampMode)
+        {
+            case ClampMode.SQUARE:
+                {
+                    position.x = Mathf.Clamp(position.x, -clampValue / 2f, clampValue / 2f);
+                    position.y = Mathf.Clamp(position.y, -clampValue / 2f, clampValue / 2f);
+
+                    break;
+                }
+            case ClampMode.CIRCLE:
+                {
+                    position = Vector2.ClampMagnitude(position, clampValue / 2f);
+                    break;
+                }
+
+        }
+        transform.position = new Vector3(position.x, position.y, zPosition);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Vector3 position = new Vector3(0, 0, zPosition);
+
+        switch (clampMode)
+        {
+            case ClampMode.SQUARE:
+                {
+                    Gizmos.DrawWireCube(position, new Vector3(clampValue, clampValue, 0));
+                    break;
+                }
+            case ClampMode.CIRCLE:
+                {
+                    Gizmos.DrawWireSphere(position, clampValue / 2f);
+                    break;
+                }
+
+        }
     }
 
     void Update()

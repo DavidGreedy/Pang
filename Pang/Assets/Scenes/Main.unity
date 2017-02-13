@@ -430,6 +430,8 @@ MonoBehaviour:
   boostTokenActive: 0
   boostTokensRemaining: 0
   score: {fileID: 215467316}
+  clampValue: 0
+  clampMode: 0
 --- !u!114 &215467316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8576,6 +8578,8 @@ MonoBehaviour:
   boostTokenActive: 0
   boostTokensRemaining: 0
   score: {fileID: 1794763277}
+  clampValue: 3
+  clampMode: 1
 --- !u!114 &1794763277
 MonoBehaviour:
   m_ObjectHideFlags: 0
