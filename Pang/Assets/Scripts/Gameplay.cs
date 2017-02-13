@@ -6,15 +6,7 @@ using UnityEngine.UI;
 
 public class Gameplay : Singleton<Gameplay>
 {
-    public int playerHits, targetScore = 1;
-
-    public float matchTimer, serveThrust, superHitThrust;
-
-    public bool matchPlaying, isPaused;
-
-    public bool toServe, aiToServe;
-
-    public event Action OnHit;
+    public int targetScore = 1;
 
     public Ball ball;
 
@@ -57,11 +49,6 @@ public class Gameplay : Singleton<Gameplay>
         activePaddles = new List<Paddle>();
     }
 
-    void UpdateHitCount(Paddle paddle)
-    {
-        paddle.AddHit();
-    }
-
     void DecideServeOrder()
     {
         if (isRandomServeOrder)
@@ -83,11 +70,9 @@ public class Gameplay : Singleton<Gameplay>
 
     void Start()
     {
-        matchPlaying = true;
         DecideServeOrder();
         SelectNextServer();
         UpdateScoreUI();
-        ball.OnHit += UpdateHitCount;
     }
 
     void SelectNextServer()
@@ -139,26 +124,6 @@ public class Gameplay : Singleton<Gameplay>
         sceneManager.ChangeScene(0);
     }
 
-    void Update()
-    {
-        Debug.DrawLine(ball.transform.position, CurrentServer.transform.position);
-        if (!isPaused && matchPlaying)
-        {
-            matchTimer += Time.deltaTime;
-        }
-    }
-
-    //private void OnCollisionEnter(Collision other)
-    //{
-    //    if (other.transform.tag == "Ball")
-    //    {
-    //        if (OnHit != null)
-    //        {
-    //            OnHit.Invoke();
-    //        }
-    //    }
-    //}
-
     public void AddPaddle(Paddle paddle)
     {
         activePaddles.Add(paddle);
@@ -176,13 +141,5 @@ public class Gameplay : Singleton<Gameplay>
         }
         scoreUIList[2].text = activePaddles[1].ScoreObject.ScoreValue.ToString();
         scoreUIList[3].text = activePaddles[0].ScoreObject.ScoreValue.ToString();
-    }
-
-    public void ScoreSwapServer()
-    {
-        for (int i = 0; i < activePaddles.Count; i++)
-        {
-            return;
-        }
     }
 }

@@ -32,6 +32,8 @@ public class Paddle : MonoBehaviour
     [SerializeField]
     private float hitForce;
 
+    public float HitForce { get { return hitForce; } }
+
     public event Action OnHit;
     public event Action OnServe;
 
@@ -58,6 +60,9 @@ public class Paddle : MonoBehaviour
 
     public ClampMode clampMode;
 
+    private Vector3 previousPosition;
+    public float spinPower;
+
     public void AddHit()
     {
         //print(name + " just hit the ball");
@@ -74,12 +79,14 @@ public class Paddle : MonoBehaviour
 
     public void SetTargetPos(Vector2 position)
     {
+        previousPosition = transform.position;
         targetPosition = new Vector3(position.x, position.y, zPosition);
         transform.Translate((targetPosition - transform.position).normalized * speed * Time.deltaTime, Space.World);
     }
 
     public void SetPosition(Vector2 position)
     {
+        previousPosition = transform.position;
         switch (clampMode)
         {
             case ClampMode.SQUARE:
@@ -101,7 +108,7 @@ public class Paddle : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Vector3 position = new Vector3(0, 0, zPosition);
+        Vector3 position = new Vector3(0, 0, transform.position.z);
 
         switch (clampMode)
         {
@@ -115,7 +122,6 @@ public class Paddle : MonoBehaviour
                     Gizmos.DrawWireSphere(position, clampValue / 2f);
                     break;
                 }
-
         }
     }
 
@@ -138,24 +144,11 @@ public class Paddle : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Ball")
-        {
-            Gameplay.Instance.ball.Hit(this, HitDirection, hitForce);
-            if (OnHit != null)
-            {
-                OnHit.Invoke();
-            }
-        }
-    }
-
     public void Serve()
     {
-        print("Serve");
         Ball ball = Gameplay.Instance.ball;
         ball.transform.parent = null;
-        ball.Hit(this, HitDirection, hitForce);
+        ball.Serve(this);
         if (OnServe != null)
         {
             OnServe.Invoke();
