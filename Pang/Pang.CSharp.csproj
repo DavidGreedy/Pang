@@ -179,8 +179,9 @@
     <Compile Include="Assets\Scripts\Paddle.cs" />
     <Compile Include="Assets\Scripts\PaddleController.cs" />
     <Compile Include="Assets\Scripts\SceneManagement.cs" />
-    <Compile Include="Assets\Scripts\Score.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Statistics.cs" />
+    <Compile Include="Assets\Scripts\Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Binston\Barrier.shader" />

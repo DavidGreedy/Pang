@@ -8,7 +8,7 @@ public class PaddleController : MonoBehaviour
     {
         controlledPaddle.SetPosition((Vector3.ProjectOnPlane(transform.forward * controlledPaddle.PosZ, controlledPaddle.HitDirection) + (controlledPaddle.HitDirection * controlledPaddle.PosZ)));
 
-        if (Input.GetMouseButton(0) && Gameplay.Instance.CurrentServer == controlledPaddle)
+        if (Input.GetMouseButtonDown(0))
         {
             controlledPaddle.Serve();
         }

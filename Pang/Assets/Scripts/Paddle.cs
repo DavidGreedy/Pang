@@ -34,17 +34,10 @@ public class Paddle : MonoBehaviour
 
     public float HitForce { get { return hitForce; } }
 
-    public event Action OnHit;
-    public event Action OnServe;
-
     private Vector3 targetPosition;
 
     public bool boostTokenActive;
     public int boostTokensRemaining;
-
-    [SerializeField]
-    private Score score;
-    public Score ScoreObject { get { return score; } }
 
     public Vector3 ServePosition
     { get { return transform.position + (HitDirection * 0.5f); } }
@@ -63,6 +56,22 @@ public class Paddle : MonoBehaviour
     private Vector3 previousPosition;
     public float spinPower;
 
+    public Ball ballToServe = null;
+
+    [SerializeField]
+    private int score;
+    public int Score
+    {
+        get { return team.Score; }
+    }
+
+    [SerializeField]
+    private Team team;
+    public Team Team
+    {
+        get { return team; }
+    }
+
     public void AddHit()
     {
         //print(name + " just hit the ball");
@@ -72,7 +81,6 @@ public class Paddle : MonoBehaviour
     private void Start()
     {
         transform.forward = hitDir;
-        OnHit += DrawBounceVel;
         boostTokensRemaining = GameManager.boostTokenAmt;
         Gameplay.Instance.AddPaddle(this);
     }
@@ -130,34 +138,19 @@ public class Paddle : MonoBehaviour
         Debug.DrawLine(transform.position, targetPosition, Color.green);
     }
 
-    private void DrawBounceVel()
-    {
-        StartCoroutine(DrawBallBounceVel());
-    }
-
-    private IEnumerator DrawBallBounceVel()
-    {
-        while (true)
-        {
-            Debug.DrawLine(transform.position, targetPosition, Color.magenta);
-            yield return new WaitForSeconds(3f);
-        }
-    }
-
     public void Serve()
     {
-        Ball ball = Gameplay.Instance.ball;
-        ball.transform.parent = null;
-        ball.Serve(this);
-        if (OnServe != null)
+        if (ballToServe != null)
         {
-            OnServe.Invoke();
+            ballToServe.Serve(this);
+            ballToServe = null;
         }
     }
 
     public void SetServer(Ball ball)
     {
         print(gameObject.name + " IS SERVING");
+        ballToServe = ball;
         ball.transform.position = ServePosition;
         ball.transform.parent = transform;
     }

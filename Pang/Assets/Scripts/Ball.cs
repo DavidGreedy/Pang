@@ -9,44 +9,53 @@ public class Ball : MonoBehaviour
     private Paddle bouncePaddle;
 
     public event Action OnHit;
-    public event Action OnServe;
-    public event Action OnScore;
+    public event Action<Paddle> OnServe;
+    public event Action<Paddle> OnScore;
 
     public Vector3 spinAxis;
     public Vector3 spinVector;
     public float spinForce;
     public float spinDecay;
 
-    public void Hit(Paddle paddle)
-    {
-        bouncePaddle = paddle;
-    }
+    private bool isFree;
 
     public void Serve(Paddle paddle)
     {
+        transform.parent = null;
         rigidbody.velocity = paddle.HitDirection * paddle.HitForce;
+        bouncePaddle = paddle;
+        if (OnServe != null)
+        {
+            OnServe.Invoke(paddle);
+        }
     }
 
     void FixedUpdate()
     {
-        Vector3 spinStrength = spinAxis - transform.position;
-        spinVector.z = 0;
-        rigidbody.AddForce((spinVector + spinStrength) * Time.deltaTime, ForceMode.Force);
-        spinVector -= spinVector * spinDecay;
+        if (isFree)
+        {
+            //Vector3 spinStrength = spinAxis - transform.position;
+            //spinVector.z = 0;
+            //rigidbody.AddForce((spinVector + spinStrength) * Time.deltaTime, ForceMode.Force);
+            //spinVector -= spinVector * spinDecay;
+        }
     }
 
-    public void Score(int score)
+    public void Reset()
     {
         rigidbody.velocity = Vector3.zero;
-        bouncePaddle.ScoreObject.AddScore(score);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "ScoringVolume")
         {
-            Score(1);
+            Reset();
+            if (OnScore != null)
+            {
+                OnScore.Invoke(bouncePaddle);
+            }
         }
     }
 

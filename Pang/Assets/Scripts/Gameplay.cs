@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Gameplay : Singleton<Gameplay>
@@ -11,35 +10,13 @@ public class Gameplay : Singleton<Gameplay>
     public Ball ball;
 
     public List<Paddle> activePaddles;
-    private int currentServeIndex = 0;
 
     [SerializeField]
     private SceneManagement sceneManager;
 
     public Canvas winCanvas;
 
-    public Paddle CurrentServer
-    {
-        get { return activePaddles[currentServeIndex]; }
-    }
-
-    [SerializeField]
-    private bool isRandomServeOrder;
-
     public List<Text> scoreUIList;
-
-    public enum GameState
-    {
-        SERVING,
-        PLAYING
-    }
-
-    private GameState gameState;
-
-    public GameState State
-    {
-        get { return gameState; }
-    }
 
     private void Awake()
     {
@@ -49,67 +26,38 @@ public class Gameplay : Singleton<Gameplay>
         activePaddles = new List<Paddle>();
     }
 
-    void DecideServeOrder()
-    {
-        if (isRandomServeOrder)
-        {
-            activePaddles.Shuffle();
-        }
-        else
-        {
-            for (int i = 0; i < activePaddles.Count; i++)
-            {
-                if (activePaddles[i].tag == "Player")
-                {
-                    currentServeIndex = i;
-                    return;
-                }
-            }
-        }
-    }
-
     void Start()
     {
-        DecideServeOrder();
-        SelectNextServer();
+        ball.OnScore += ScoreEvent;
+        SetPlayerToServe();
         UpdateScoreUI();
     }
 
-    void SelectNextServer()
+    void SetPlayerToServe()
     {
-        CurrentServer.SetServer(ball);
-        ball.gameObject.SetActive(true);
-        gameState = GameState.SERVING;
-    }
-
-    void OnPaddleServe()
-    {
-        currentServeIndex++;
-
-        if (currentServeIndex == activePaddles.Count)
-        {
-            currentServeIndex = 0;
-        }
-        gameState = GameState.PLAYING;
-    }
-
-    void CheckWinner()
-    {
-        bool winner = false;
         for (int i = 0; i < activePaddles.Count; i++)
         {
-            if (activePaddles[i].ScoreObject.ScoreValue == targetScore)
+            if (activePaddles[i].tag == "Player")
             {
-                // PADDLE HAS WON
-                print(activePaddles[i].name + " HAS WON");
-                ActivateWinScreen();
-                winner = true;
+                activePaddles[i].GetComponent<Paddle>().SetServer(ball);
+                return;
             }
         }
+    }
 
-        if (!winner)
+    void ScoreEvent(Paddle scoringPaddle) // In the event that someone scores
+    {
+        if (scoringPaddle.Score > targetScore)
         {
+            // scoring paddles has won
+            print(scoringPaddle.name + " Won");
+            ActivateWinScreen();
+        }
+        else
+        {
+            print(scoringPaddle.name + " Scored");
             UpdateScoreUI();
+            scoringPaddle.SetServer(ball);
         }
     }
 
@@ -127,19 +75,15 @@ public class Gameplay : Singleton<Gameplay>
     public void AddPaddle(Paddle paddle)
     {
         activePaddles.Add(paddle);
-        paddle.OnServe += OnPaddleServe;
-        paddle.ScoreObject.OnScore += CheckWinner;
-        paddle.ScoreObject.OnScore += SelectNextServer;
     }
 
     private void UpdateScoreUI()
     {
-        print("UPDATING SCORE UI");
         for (int i = 0; i < activePaddles.Count; i++)
         {
-            scoreUIList[i].text = activePaddles[i].ScoreObject.ScoreValue.ToString();
+            scoreUIList[i].text = activePaddles[i].Score.ToString();
         }
-        scoreUIList[2].text = activePaddles[1].ScoreObject.ScoreValue.ToString();
-        scoreUIList[3].text = activePaddles[0].ScoreObject.ScoreValue.ToString();
+        scoreUIList[2].text = activePaddles[1].Score.ToString();
+        scoreUIList[3].text = activePaddles[0].Score.ToString();
     }
 }
