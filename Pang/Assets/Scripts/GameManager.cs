@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public static int paddleDifficultyAmount, targetScore, boostTokenAmt;
+    public static int paddleSpeed, targetScore, boostTokenAmt;
     public static float paddleScale;
 
     public enum GameDiff { Normal, Hard }
@@ -22,14 +22,14 @@ public class GameManager : Singleton<GameManager>
         {
             case 0:
                 _gameDiff = GameDiff.Normal;
-                paddleDifficultyAmount = 10;
+                paddleSpeed = 10;
                 boostTokenAmt = 10;
                 paddleScale = 1;
                 break;
 
             case 1:
                 _gameDiff = GameDiff.Hard;
-                paddleDifficultyAmount = 10;
+                paddleSpeed = 10;
                 boostTokenAmt = 5;
                 paddleScale = 0.5f;
                 break;

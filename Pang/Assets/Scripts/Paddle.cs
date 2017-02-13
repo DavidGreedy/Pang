@@ -51,7 +51,7 @@ public class Paddle : MonoBehaviour
 
     public void AddHit()
     {
-        print(name + " just hit the ball");
+        //print(name + " just hit the ball");
         hitCount++;
     }
 

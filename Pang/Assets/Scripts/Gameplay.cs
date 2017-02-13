@@ -52,7 +52,8 @@ public class Gameplay : Singleton<Gameplay>
     private void Awake()
     {
         base.Awake();
-        targetScore = GameManager.paddleDifficultyAmount;
+        targetScore = GameManager.targetScore;
+        print("Target Score: " + targetScore);
         activePaddles = new List<Paddle>();
     }
 
@@ -109,14 +110,21 @@ public class Gameplay : Singleton<Gameplay>
 
     void CheckWinner()
     {
+        bool winner = false;
         for (int i = 0; i < activePaddles.Count; i++)
         {
-            print(targetScore);
             if (activePaddles[i].ScoreObject.ScoreValue == targetScore)
             {
                 // PADDLE HAS WON
+                print(activePaddles[i].name + " HAS WON");
                 ActivateWinScreen();
+                winner = true;
             }
+        }
+
+        if (!winner)
+        {
+            UpdateScoreUI();
         }
     }
 
@@ -151,18 +159,15 @@ public class Gameplay : Singleton<Gameplay>
     //    }
     //}
 
-
-
     public void AddPaddle(Paddle paddle)
     {
         activePaddles.Add(paddle);
         paddle.OnServe += OnPaddleServe;
         paddle.ScoreObject.OnScore += CheckWinner;
-        paddle.ScoreObject.OnScore += UpdateScoreUI;
         paddle.ScoreObject.OnScore += SelectNextServer;
     }
 
-    public void UpdateScoreUI()
+    private void UpdateScoreUI()
     {
         print("UPDATING SCORE UI");
         for (int i = 0; i < activePaddles.Count; i++)

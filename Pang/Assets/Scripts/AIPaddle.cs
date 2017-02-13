@@ -15,7 +15,7 @@ public class AIPaddle : MonoBehaviour
     private void Awake()
     {
         boostTokensRemaining = GameManager.boostTokenAmt;
-        controlledPaddle.Speed = GameManager.paddleDifficultyAmount;
+        controlledPaddle.Speed = GameManager.paddleSpeed;
     }
 
     void Update()
