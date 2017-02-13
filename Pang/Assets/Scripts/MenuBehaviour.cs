@@ -63,6 +63,15 @@ public class MenuBehaviour : MonoBehaviour {
         menuPanels[4].SetActive(true);
     }
 
+    public void Multiplayer()
+    {
+        foreach (GameObject panels in menuPanels)
+        {
+            panels.SetActive(false);
+        }
+        menuPanels[5].SetActive(true);
+    }
+
     public void Quit()
     {
         Application.Quit();
