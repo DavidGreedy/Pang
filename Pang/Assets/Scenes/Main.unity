@@ -880,6 +880,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5d69df9d9d11e49d110086ba44295342, type: 2}
+    - target: {fileID: 1531187068830688, guid: 3e665d55c243c864ebdbfae37aee3436, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e665d55c243c864ebdbfae37aee3436, type: 2}
   m_IsPrefabParent: 0
@@ -8722,7 +8726,6 @@ MonoBehaviour:
   activePaddles: []
   sceneManager: {fileID: 106872714}
   winCanvas: {fileID: 622075533}
-  isRandomServeOrder: 0
   scoreUIList:
   - {fileID: 238717981}
   - {fileID: 1649527979}
@@ -8788,15 +8791,15 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 3b1db1502ed893d4aa8f869cef7553bc, type: 2}
     - target: {fileID: 4290663762059756, guid: 992258a985d1a064d95ce68bf54e4ba3, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4290663762059756, guid: 992258a985d1a064d95ce68bf54e4ba3, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4290663762059756, guid: 992258a985d1a064d95ce68bf54e4ba3, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 992258a985d1a064d95ce68bf54e4ba3, type: 2}
@@ -8973,7 +8976,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2113760633}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 9.5}
+  m_LocalPosition: {x: 0, y: 0.06, z: 9.5}
   m_LocalScale: {x: 7, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 58216620}

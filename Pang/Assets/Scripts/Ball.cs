@@ -5,19 +5,16 @@ public class Ball : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody rigidbody;
-
+    private Rigidbody paddleRb;
     private Paddle bouncePaddle;
 
     public event Action OnHit;
     public event Action<Paddle> OnServe;
     public event Action<Paddle> OnScore;
 
-    public Vector3 spinAxis;
-    public Vector3 spinVector;
-    public float spinForce;
-    public float spinDecay;
+    public Vector3 paddleV, paddlePrevPos;
 
-    private bool isFree;
+    public float spinForce;
 
     public void Serve(Paddle paddle)
     {
@@ -32,13 +29,7 @@ public class Ball : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isFree)
-        {
-            //Vector3 spinStrength = spinAxis - transform.position;
-            //spinVector.z = 0;
-            //rigidbody.AddForce((spinVector + spinStrength) * Time.deltaTime, ForceMode.Force);
-            //spinVector -= spinVector * spinDecay;
-        }
+
     }
 
     public void Reset()
@@ -65,6 +56,7 @@ public class Ball : MonoBehaviour
         if (p != null)
         {
             bouncePaddle = other.transform.GetComponent<Paddle>();
+            rigidbody.AddForce(bouncePaddle.paddleVel.x / spinForce , bouncePaddle.paddleVel.y / spinForce , 0, ForceMode.Impulse);
         }
     }
 

@@ -8,6 +8,10 @@ public class Paddle : MonoBehaviour
     [SerializeField]
     protected Vector3 hitDir;
 
+    public GameObject thisPaddle;
+    public Vector3 paddleVel;
+    private Vector3 lastPadPos;
+
     public Vector3 HitDirection
     {
         get { return hitDir; }
@@ -153,5 +157,12 @@ public class Paddle : MonoBehaviour
         ballToServe = ball;
         ball.transform.position = ServePosition;
         ball.transform.parent = transform;
+    }
+
+    public void FixedUpdate()
+    {
+        paddleVel = (thisPaddle.transform.position - lastPadPos) / Time.deltaTime;
+        lastPadPos = thisPaddle.transform.position;
+        print(paddleVel);
     }
 }
