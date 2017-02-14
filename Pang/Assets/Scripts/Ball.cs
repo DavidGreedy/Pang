@@ -16,6 +16,8 @@ public class Ball : MonoBehaviour
 
     public float spinForce;
 
+    public Vector3 ballSpeed;
+
     public void Serve(Paddle paddle)
     {
         transform.parent = null;

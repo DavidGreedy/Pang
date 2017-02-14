@@ -425,6 +425,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitDir: {x: 0, y: 0, z: -1}
+  thisPaddle: {fileID: 215467311}
+  paddleVel: {x: 0, y: 0, z: 0}
   speed: 0
   zPosition: 15
   hitForce: 10
@@ -8595,6 +8597,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitDir: {x: 0, y: 0, z: 1}
+  thisPaddle: {fileID: 1794763271}
+  paddleVel: {x: 0, y: 0, z: 0}
   speed: 3
   zPosition: 3
   hitForce: 10
@@ -8831,10 +8835,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 2023786502}
-  spinAxis: {x: 0, y: 0, z: 0}
-  spinVector: {x: 0, y: 0, z: 0}
+  paddleV: {x: 0, y: 0, z: 0}
+  paddlePrevPos: {x: 0, y: 0, z: 0}
   spinForce: 10
-  spinDecay: 1
 --- !u!1 &2030608339
 GameObject:
   m_ObjectHideFlags: 0
