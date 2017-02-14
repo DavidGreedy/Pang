@@ -163,6 +163,6 @@ public class Paddle : MonoBehaviour
     {
         paddleVel = (thisPaddle.transform.position - lastPadPos) / Time.deltaTime;
         lastPadPos = thisPaddle.transform.position;
-        print(paddleVel);
+        //print(paddleVel);
     }
 }
