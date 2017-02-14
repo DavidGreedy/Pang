@@ -53,7 +53,7 @@ public class Paddle : MonoBehaviour
         SQUARE, CIRCLE
     }
 
-    public float clampValue;
+    public float clampValueX, clampValueY;
 
     public ClampMode clampMode;
 
@@ -103,14 +103,14 @@ public class Paddle : MonoBehaviour
         {
             case ClampMode.SQUARE:
                 {
-                    position.x = Mathf.Clamp(position.x, -clampValue / 2f, clampValue / 2f);
-                    position.y = Mathf.Clamp(position.y, -clampValue / 2f, clampValue / 2f);
+                    position.x = Mathf.Clamp(position.x, -clampValueX / 2f, clampValueX / 2f);
+                    position.y = Mathf.Clamp(position.y, -clampValueY / 2f, clampValueY / 2f);
 
                     break;
                 }
             case ClampMode.CIRCLE:
                 {
-                    position = Vector2.ClampMagnitude(position, clampValue / 2f);
+                    position = Vector2.ClampMagnitude(position, clampValueX / 2f);
                     break;
                 }
 
@@ -126,12 +126,12 @@ public class Paddle : MonoBehaviour
         {
             case ClampMode.SQUARE:
                 {
-                    Gizmos.DrawWireCube(position, new Vector3(clampValue, clampValue, 0));
+                    //Gizmos.DrawWireCube(position, new Vector3(clampValue, clampValue, 0));
                     break;
                 }
             case ClampMode.CIRCLE:
                 {
-                    Gizmos.DrawWireSphere(position, clampValue / 2f);
+                    //Gizmos.DrawWireSphere(position, clampValue / 2f);
                     break;
                 }
         }
