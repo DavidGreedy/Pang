@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ball
   - ScoringVolume
+  - PaddleWall
   layers:
   - Default
   - TransparentFX
