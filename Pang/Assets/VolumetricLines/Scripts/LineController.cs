@@ -6,6 +6,14 @@ using VolumetricLines;
 public class LineController : Singleton<LineController>
 {
     [SerializeField]
+    private Color[] colors;
+
+    public enum ColorScheme
+    {
+        Player, Level, Opponent, Ball
+    }
+
+    [SerializeField]
     private Color m_lineColor;
 
     [SerializeField]
@@ -16,6 +24,16 @@ public class LineController : Singleton<LineController>
 
     [SerializeField]
     private float glowSpeed;
+
+    private void Awake()
+    {
+        base.Awake();
+        colors = new Color[4];
+        for (int i = 0; i < colors.Length; i++)
+        {
+            colors[i] = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+        }
+    }
 
     private void Start()
     {
@@ -55,5 +73,10 @@ public class LineController : Singleton<LineController>
             break;
         }
         yield break;
+    }
+
+    public Color GetColor(ColorScheme colorScheme)
+    {
+        return colors[(int)colorScheme];
     }
 }

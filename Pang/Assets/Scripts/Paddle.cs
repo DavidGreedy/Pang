@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Paddle : MonoBehaviour
 {
@@ -55,11 +56,28 @@ public class Paddle : MonoBehaviour
         get { return score; }
     }
 
+    [SerializeField]
+    private Text scoreText;
+
+    [SerializeField]
+    private LineController.ColorScheme colorScheme;
+
+    [SerializeField]
+    private Renderer[] renderers;
+
     private void Start()
     {
         transform.forward = hitDir;
         boostTokensRemaining = GameManager.boostTokenAmt;
         Gameplay.Instance.AddPaddle(this);
+
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].material.color = LineController.Instance.GetColor(colorScheme);
+            //renderers[i].material.SetColor("_EmissionColor", LineController.Instance.GetColor(colorScheme));
+            DynamicGI.SetEmissive(renderers[i], LineController.Instance.GetColor(colorScheme) * 4f);
+        }
+        DynamicGI.UpdateEnvironment();
     }
 
     public void SetPosition(Vector3 position)
@@ -82,6 +100,12 @@ public class Paddle : MonoBehaviour
 
         }
         transform.position = new Vector3(position.x, position.y, position.z);
+    }
+
+    public void AddScore(int amount)
+    {
+        score += amount;
+        scoreText.text = score.ToString();
     }
 
     void Update()

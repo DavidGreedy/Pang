@@ -17,10 +17,28 @@ public class Ball : MonoBehaviour
 
     public float spinModifier = 10f;
 
+    [SerializeField]
+    private LineController.ColorScheme colorScheme;
+
+    [SerializeField]
+    private Renderer[] renderers;
+
+    private void Start()
+    {
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].material.color = LineController.Instance.GetColor(colorScheme);
+            renderers[i].material.SetColor("_EmissionColor", LineController.Instance.GetColor(colorScheme));
+            DynamicGI.SetEmissive(renderers[i], LineController.Instance.GetColor(colorScheme) * 4f);
+            DynamicGI.UpdateMaterials(renderers[i]);
+        }
+        DynamicGI.UpdateEnvironment();
+    }
+
     public void Serve(Paddle paddle)
     {
         transform.parent = null;
-        rigidbody.velocity = (paddle.HitDirection * paddle.HitForce) + (Vector3)((Vector2)Vector3.ClampMagnitude(paddle.Velocity, maxSpin) * spinModifier);
+        rigidbody.velocity = (paddle.HitDirection * paddle.HitForce) + (Vector3)(Vector2.ClampMagnitude(paddle.Velocity, maxSpin) * spinModifier);
         bouncePaddle = paddle;
         isActive = true;
         if (OnServe != null)
@@ -48,9 +66,11 @@ public class Ball : MonoBehaviour
         if (other.tag == "ScoringVolume")
         {
             Reset();
+            Goal g = other.GetComponent<Goal>();
+            g.whoGetsPoint.AddScore(1);
             if (OnScore != null)
             {
-                OnScore.Invoke(bouncePaddle);
+                OnScore.Invoke(g.whoGetsPoint);
             }
         }
     }
@@ -61,7 +81,7 @@ public class Ball : MonoBehaviour
         if (p != null)
         {
             bouncePaddle = other.transform.GetComponent<Paddle>();
-            rigidbody.AddForce(((Vector2)bouncePaddle.Velocity * spinModifier));
+            rigidbody.AddForce(((Vector2)bouncePaddle.Velocity * spinModifier * 10f));
         }
     }
 

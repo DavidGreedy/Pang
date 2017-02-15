@@ -16,12 +16,18 @@ public class Gameplay : Singleton<Gameplay>
 
     public Canvas winCanvas;
 
-    public List<Text> scoreUIList;
+    public Text playerScoreText;
+    public Text opponentScoreText;
+
 
     private void Awake()
     {
         base.Awake();
         targetScore = GameManager.targetScore;
+        if (targetScore == 0)
+        {
+            targetScore = 2;
+        }
         print("Target Score: " + targetScore);
         activePaddles = new List<Paddle>();
     }
@@ -30,7 +36,6 @@ public class Gameplay : Singleton<Gameplay>
     {
         ball.OnScore += ScoreEvent;
         SetPlayerToServe();
-        UpdateScoreUI();
     }
 
     void SetPlayerToServe()
@@ -47,16 +52,17 @@ public class Gameplay : Singleton<Gameplay>
 
     void ScoreEvent(Paddle scoringPaddle) // In the event that someone scores
     {
-        if (scoringPaddle.Score > targetScore)
+        if (scoringPaddle.Score == targetScore)
         {
-            // scoring paddles has won
-            print(scoringPaddle.name + " Won");
             ActivateWinScreen();
+            for (int i = 0; i < activePaddles.Count; i++)
+            {
+                Destroy(activePaddles[i].gameObject);
+            }
+            Destroy(ball.gameObject);
         }
         else
         {
-            print(scoringPaddle.name + " Scored");
-            UpdateScoreUI();
             scoringPaddle.SetServer(ball);
         }
     }
@@ -75,15 +81,5 @@ public class Gameplay : Singleton<Gameplay>
     public void AddPaddle(Paddle paddle)
     {
         activePaddles.Add(paddle);
-    }
-
-    private void UpdateScoreUI()
-    {
-        for (int i = 0; i < activePaddles.Count; i++)
-        {
-            scoreUIList[i].text = activePaddles[i].Score.ToString();
-        }
-        scoreUIList[2].text = activePaddles[1].Score.ToString();
-        scoreUIList[3].text = activePaddles[0].Score.ToString();
     }
 }

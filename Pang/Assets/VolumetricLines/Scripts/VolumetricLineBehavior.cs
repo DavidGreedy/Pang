@@ -54,6 +54,9 @@ namespace VolumetricLines
         [SerializeField]
         private Renderer m_Renderer;
 
+        [SerializeField]
+        private LineController.ColorScheme colorScheme;
+
         private static readonly Vector2[] m_vline_texCoords = {
             new Vector2(1.0f, 1.0f),
             new Vector2(1.0f, 0.0f),
