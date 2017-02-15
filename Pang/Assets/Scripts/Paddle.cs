@@ -44,7 +44,7 @@ public class Paddle : MonoBehaviour
     public int boostTokensRemaining;
 
     public Vector3 ServePosition
-    { get { return transform.position + (HitDirection * 0.5f); } }
+    { get { return transform.position + (HitDirection * 0.2f); } }
 
     private int hitCount;
 

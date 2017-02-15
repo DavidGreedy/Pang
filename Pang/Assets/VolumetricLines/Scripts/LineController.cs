@@ -17,11 +17,20 @@ public class LineController : Singleton<LineController>
     [SerializeField]
     private float glowSpeed;
 
-    private float t = 0;
-
-    float Hermite(float t)
+    private void Start()
     {
-        return -t * t * t * 2f + t * t * 3f;
+        Invoke("t", 0f);
+    }
+
+    private void t()
+    {
+        StartCoroutine(Pulse(10));
+        foreach (VolumetricLineBehavior line in VolumetricLineBehavior.lines)
+        {
+            line.LineColor = m_lineColor;
+            line.LineWidth = m_lineWidth;
+            line.GlowFactor = m_glowFactor;
+        }
     }
 
     void Update()
@@ -30,19 +39,20 @@ public class LineController : Singleton<LineController>
         {
             line.LineColor = m_lineColor;
             line.LineWidth = m_lineWidth;
-            line.GlowFactor = Mathf.PingPong(Time.time, glowSpeed);
+            line.GlowFactor = m_glowFactor;
         }
     }
 
-    public IEnumerator Score(int times)
+    public IEnumerator Pulse(float t)
     {
-        for (int i = 0; i < times; i++)
+        while (true)
         {
             foreach (VolumetricLineBehavior line in VolumetricLineBehavior.lines)
             {
-                line.GlowFactor = Mathf.PingPong(Time.time, glowSpeed);
+                //line.GlowFactor = Mathf.Lerp();
             }
-            yield return new WaitForSeconds(1.0f / glowSpeed);
+            yield return new WaitForSeconds(t);
+            break;
         }
         yield break;
     }

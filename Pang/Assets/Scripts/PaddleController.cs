@@ -11,7 +11,7 @@ public class PaddleController : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
             if (hit.collider.tag == "PaddleWall")
-                controlledPaddle.transform.position = hit.point + (Vector3.forward * 0.1f);
+                controlledPaddle.SetPosition(hit.point);
             //This works but the ray doesn't move with the rotation of the camera? No fuckign clue why probably a shitty VR reason
         }
         Debug.DrawLine(transform.position, hit.point, Color.red);
