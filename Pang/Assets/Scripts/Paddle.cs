@@ -66,14 +66,7 @@ public class Paddle : MonoBehaviour
     private int score;
     public int Score
     {
-        get { return team.Score; }
-    }
-
-    [SerializeField]
-    private Team team;
-    public Team Team
-    {
-        get { return team; }
+        get { return score; }
     }
 
     public void AddHit()

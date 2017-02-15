@@ -131,7 +131,8 @@ namespace VolumetricLines
 
             lines.Add(this);
 
-            Vector3[] vertexPositions = {
+            Vector3[] vertexPositions =
+            {
                 m_startPos,
                 m_startPos,
                 m_startPos,
@@ -142,7 +143,8 @@ namespace VolumetricLines
                 m_endPos,
             };
 
-            Vector3[] other = {
+            Vector3[] other =
+            {
                 m_endPos,
                 m_endPos,
                 m_endPos,
@@ -175,10 +177,26 @@ namespace VolumetricLines
             m_Renderer.material.SetFloat("_LineScale", transform.GetGlobalUniformScaleForLineWidth());
         }
 
+        private void OnPostRender()
+        {
+            //if (!Application.isPlaying)
+            //{
+            //    GL.Begin(GL.QUADS);
+            //    GL.LoadOrtho();
+            //    GL.Color(Color.green);
+            //    GL.Vertex(m_startPos);
+            //    GL.Vertex(m_endPos);
+            //    GL.End();
+            //}
+        }
+
         void OnDrawGizmos()
         {
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(gameObject.transform.TransformPoint(m_startPos), gameObject.transform.TransformPoint(m_endPos));
+            if (!Application.isPlaying)
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(gameObject.transform.TransformPoint(m_startPos), gameObject.transform.TransformPoint(m_endPos));
+            }
         }
         #endregion
     }
