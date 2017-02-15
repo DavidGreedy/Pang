@@ -8,9 +8,7 @@ public class Paddle : MonoBehaviour
     [SerializeField]
     protected Vector3 hitDir;
 
-    public GameObject thisPaddle;
-    public Vector3 paddleVel;
-    private Vector3 lastPadPos;
+    public Vector2 Velocity { get { return transform.position - previousPosition; } }
 
     public Vector3 HitDirection
     {
@@ -27,26 +25,15 @@ public class Paddle : MonoBehaviour
     }
 
     [SerializeField]
-    private float zPosition;
-    public float PosZ
-    {
-        get { return zPosition; }
-    }
-
-    [SerializeField]
     private float hitForce;
 
     public float HitForce { get { return hitForce; } }
-
-    private Vector3 targetPosition;
 
     public bool boostTokenActive;
     public int boostTokensRemaining;
 
     public Vector3 ServePosition
     { get { return transform.position + (HitDirection * 0.2f); } }
-
-    private int hitCount;
 
     public enum ClampMode
     {
@@ -58,7 +45,6 @@ public class Paddle : MonoBehaviour
     public ClampMode clampMode;
 
     private Vector3 previousPosition;
-    public float spinPower;
 
     public Ball ballToServe = null;
 
@@ -69,12 +55,6 @@ public class Paddle : MonoBehaviour
         get { return score; }
     }
 
-    public void AddHit()
-    {
-        //print(name + " just hit the ball");
-        hitCount++;
-    }
-
     private void Start()
     {
         transform.forward = hitDir;
@@ -82,14 +62,7 @@ public class Paddle : MonoBehaviour
         Gameplay.Instance.AddPaddle(this);
     }
 
-    public void SetTargetPos(Vector2 position)
-    {
-        previousPosition = transform.position;
-        targetPosition = new Vector3(position.x, position.y, zPosition);
-        transform.Translate((targetPosition - transform.position).normalized * speed * Time.deltaTime, Space.World);
-    }
-
-    public void SetPosition(Vector2 position)
+    public void SetPosition(Vector3 position)
     {
         previousPosition = transform.position;
         switch (clampMode)
@@ -108,31 +81,12 @@ public class Paddle : MonoBehaviour
                 }
 
         }
-        transform.position = new Vector3(position.x, position.y, zPosition);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Vector3 position = new Vector3(0, 0, transform.position.z);
-
-        switch (clampMode)
-        {
-            case ClampMode.SQUARE:
-                {
-                    //Gizmos.DrawWireCube(position, new Vector3(clampValue, clampValue, 0));
-                    break;
-                }
-            case ClampMode.CIRCLE:
-                {
-                    //Gizmos.DrawWireSphere(position, clampValue / 2f);
-                    break;
-                }
-        }
+        transform.position = new Vector3(position.x, position.y, position.z);
     }
 
     void Update()
     {
-        Debug.DrawLine(transform.position, targetPosition, Color.green);
+        Debug.DrawRay(transform.position, Velocity.normalized, Color.green);
     }
 
     public void Serve()
@@ -150,12 +104,5 @@ public class Paddle : MonoBehaviour
         ballToServe = ball;
         ball.transform.position = ServePosition;
         ball.transform.parent = transform;
-    }
-
-    public void FixedUpdate()
-    {
-        paddleVel = (thisPaddle.transform.position - lastPadPos) / Time.deltaTime;
-        lastPadPos = thisPaddle.transform.position;
-        //print(paddleVel);
     }
 }

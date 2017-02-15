@@ -5,39 +5,42 @@ public class Ball : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody rigidbody;
-    private Rigidbody paddleRb;
     private Paddle bouncePaddle;
 
     public event Action OnHit;
     public event Action<Paddle> OnServe;
     public event Action<Paddle> OnScore;
 
-    public Vector3 paddleV, paddlePrevPos;
+    private bool isActive = false;
 
-    public float spinForce;
+    public float maxSpin;
 
-    public Vector3 ballSpeed;
+    public float spinModifier = 10f;
 
     public void Serve(Paddle paddle)
     {
         transform.parent = null;
-        rigidbody.velocity = paddle.HitDirection * paddle.HitForce;
+        rigidbody.velocity = (paddle.HitDirection * paddle.HitForce) + (Vector3)((Vector2)Vector3.ClampMagnitude(paddle.Velocity, maxSpin) * spinModifier);
         bouncePaddle = paddle;
+        isActive = true;
         if (OnServe != null)
         {
             OnServe.Invoke(paddle);
         }
     }
 
-    void FixedUpdate()
-    {
-
-    }
-
     public void Reset()
     {
         rigidbody.velocity = Vector3.zero;
-        //gameObject.SetActive(false);
+        isActive = false;
+    }
+
+    void Update()
+    {
+        if (isActive)
+        {
+            rigidbody.AddForce(-(Vector2)transform.position.normalized * spinModifier * 0.2f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,7 +61,7 @@ public class Ball : MonoBehaviour
         if (p != null)
         {
             bouncePaddle = other.transform.GetComponent<Paddle>();
-            rigidbody.AddForce(bouncePaddle.paddleVel.x / spinForce , bouncePaddle.paddleVel.y / spinForce , 0, ForceMode.Impulse);
+            rigidbody.AddForce(((Vector2)bouncePaddle.Velocity * spinModifier));
         }
     }
 
@@ -66,7 +69,7 @@ public class Ball : MonoBehaviour
     {
         if (bouncePaddle != null)
         {
-            Debug.DrawLine(transform.position, bouncePaddle.transform.position, Color.green);
+            //Debug.DrawLine(transform.position, bouncePaddle.transform.position, Color.green);
         }
     }
 }
