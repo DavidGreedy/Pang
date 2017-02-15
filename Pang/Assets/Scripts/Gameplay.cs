@@ -63,7 +63,14 @@ public class Gameplay : Singleton<Gameplay>
         }
         else
         {
-            scoringPaddle.SetServer(ball);
+            for (int i = 0; i < activePaddles.Count; i++)
+            {
+                if (scoringPaddle != activePaddles[i])
+                {
+                    activePaddles[i].SetServer(ball);
+                    return;
+                }
+            }
         }
     }
 
