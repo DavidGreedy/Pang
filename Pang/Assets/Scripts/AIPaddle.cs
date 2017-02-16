@@ -27,8 +27,8 @@ public class AIPaddle : MonoBehaviour
 
     void AIBehaviour()
     {
-        Vector3 dir = ballTarget.transform.position - transform.position;
-        Vector3 nextPos = transform.position + dir.normalized * Time.deltaTime * 20.0f;
+        Vector2 dir = ballTarget.transform.position - transform.position;
+        Vector2 nextPos = (Vector2)transform.position + (dir.normalized * Time.deltaTime * 2.0f);
 
         controlledPaddle.SetPosition(nextPos);
     }
