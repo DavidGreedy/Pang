@@ -3,7 +3,6 @@
 public class AIPaddle : MonoBehaviour
 {
     public GameObject ballTarget;
-    public float aiPlayerSpeed;
 
     public bool boostTokenActive;
     public int boostTokensRemaining;
@@ -16,15 +15,27 @@ public class AIPaddle : MonoBehaviour
         controlledPaddle.Speed = GameManager.paddleSpeed;
     }
 
+    void Start()
+    {
+        controlledPaddle.OnSetServe += BeginServe;
+    }
+
     void Update()
     {
         AIBehaviour();
-        //aiPlayerSpeed = GameManager.Instance.paddleDifficultyAmount;
     }
 
     void AIBehaviour()
     {
-        //TODO: Repair this
+        Vector3 dir = ballTarget.transform.position - transform.position;
+        Vector3 nextPos = transform.position + dir.normalized * Time.deltaTime * 20.0f;
+
+        controlledPaddle.SetPosition(nextPos);
+    }
+
+    void BeginServe()
+    {
+        Invoke("Serve", 2f);
     }
 
     void Serve()

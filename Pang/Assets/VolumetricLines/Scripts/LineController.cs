@@ -51,7 +51,7 @@ public class LineController : Singleton<LineController>
         }
     }
 
-    void Update()
+    void UpdateLineData()
     {
         foreach (VolumetricLineBehavior line in VolumetricLineBehavior.lines)
         {

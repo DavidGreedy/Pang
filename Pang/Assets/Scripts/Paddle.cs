@@ -65,6 +65,8 @@ public class Paddle : MonoBehaviour
     [SerializeField]
     private Renderer[] renderers;
 
+    public event Action OnSetServe;
+
     private void Start()
     {
         transform.forward = hitDir;
@@ -97,9 +99,8 @@ public class Paddle : MonoBehaviour
                     position = Vector2.ClampMagnitude(position, clampValueX / 2f);
                     break;
                 }
-
         }
-        transform.position = new Vector3(position.x, position.y, position.z);
+        transform.position = new Vector3(position.x, position.y, transform.position.z);
     }
 
     public void AddScore(int amount)
@@ -128,5 +129,9 @@ public class Paddle : MonoBehaviour
         ballToServe = ball;
         ball.transform.position = ServePosition;
         ball.transform.parent = transform;
+        if (OnSetServe != null)
+        {
+            OnSetServe.Invoke();
+        }
     }
 }
