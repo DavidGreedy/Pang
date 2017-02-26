@@ -174,10 +174,10 @@ namespace VolumetricLines
 
         private void Update()
         {
-            m_Renderer.material.SetColor("_Color", m_lineColor);
-            m_Renderer.material.SetFloat("_GlowFactor", m_glowFactor);
-            m_Renderer.material.SetFloat("_LineWidth", m_lineWidth);
-            m_Renderer.material.SetFloat("_LineScale", transform.GetGlobalUniformScaleForLineWidth());
+            //m_Renderer.material.SetColor("_Color", m_lineColor);
+            //m_Renderer.material.SetFloat("_GlowFactor", m_glowFactor);
+            //m_Renderer.material.SetFloat("_LineWidth", m_lineWidth);
+            //m_Renderer.material.SetFloat("_LineScale", transform.GetGlobalUniformScaleForLineWidth());
         }
 
         private void OnPostRender()

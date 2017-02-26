@@ -67,7 +67,7 @@ public class LineController : Singleton<LineController>
         {
             foreach (VolumetricLineBehavior line in VolumetricLineBehavior.lines)
             {
-                //line.GlowFactor = Mathf.Lerp();
+
             }
             yield return new WaitForSeconds(t);
             break;
