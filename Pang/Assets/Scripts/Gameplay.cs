@@ -16,9 +16,8 @@ public class Gameplay : Singleton<Gameplay>
 
     public Canvas winCanvas;
 
-    public Text playerScoreText;
-    public Text opponentScoreText;
-
+    public Text[] playerScoreText;
+    public Text[] opponentScoreText;
 
     private void Awake()
     {
@@ -26,16 +25,17 @@ public class Gameplay : Singleton<Gameplay>
         targetScore = GameManager.targetScore;
         if (targetScore == 0)
         {
-            targetScore = 2;
+            targetScore = 5;
         }
         print("Target Score: " + targetScore);
         activePaddles = new List<Paddle>();
+        ball.OnScore += ScoreEvent;
     }
 
-    void Start()
+    void Begin()
     {
-        ball.OnScore += ScoreEvent;
         SetPlayerToServe();
+        ball.Reset();
     }
 
     void SetPlayerToServe()
@@ -88,5 +88,14 @@ public class Gameplay : Singleton<Gameplay>
     public void AddPaddle(Paddle paddle)
     {
         activePaddles.Add(paddle);
+        if (activePaddles.Count == 1)
+        {
+            activePaddles[0].SetScoreTexts(playerScoreText);
+        }
+        if (activePaddles.Count == 2)
+        {
+            activePaddles[1].SetScoreTexts(opponentScoreText);
+            Begin();
+        }
     }
 }

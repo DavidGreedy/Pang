@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class Paddle : MonoBehaviour
+public class Paddle : NetworkBehaviour
 {
     [SerializeField]
     protected Vector3 hitDir;
@@ -57,7 +56,7 @@ public class Paddle : MonoBehaviour
     }
 
     [SerializeField]
-    private Text scoreText;
+    private Text[] scoreTexts;
 
     [SerializeField]
     private LineController.ColorScheme colorScheme;
@@ -67,21 +66,19 @@ public class Paddle : MonoBehaviour
 
     public event Action OnSetServe;
 
-
-
     private void Start()
     {
         transform.forward = hitDir;
         boostTokensRemaining = GameManager.boostTokenAmt;
         Gameplay.Instance.AddPaddle(this);
 
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            renderers[i].material.color = LineController.Instance.GetColor(colorScheme);
-            renderers[i].material.SetColor("_EmissionColor", LineController.Instance.GetColor(colorScheme));
-            DynamicGI.SetEmissive(renderers[i], LineController.Instance.GetColor(colorScheme) * 4f);
-        }
-        DynamicGI.UpdateEnvironment();
+        //for (int i = 0; i < renderers.Length; i++)
+        //{
+        //    renderers[i].material.color = LineController.Instance.GetColor(colorScheme);
+        //    renderers[i].material.SetColor("_EmissionColor", LineController.Instance.GetColor(colorScheme));
+        //    DynamicGI.SetEmissive(renderers[i], LineController.Instance.GetColor(colorScheme) * 4f);
+        //}
+        //DynamicGI.UpdateEnvironment();
     }
 
     public void SetPosition(Vector3 position)
@@ -108,7 +105,9 @@ public class Paddle : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
-        scoreText.text = score.ToString();
+        scoreTexts[0].text = score.ToString();
+        scoreTexts[1].text = score.ToString();
+
     }
 
     void Update()
@@ -136,5 +135,10 @@ public class Paddle : MonoBehaviour
         {
             OnSetServe.Invoke();
         }
+    }
+
+    public void SetScoreTexts(Text[] texts)
+    {
+        scoreTexts = texts;
     }
 }

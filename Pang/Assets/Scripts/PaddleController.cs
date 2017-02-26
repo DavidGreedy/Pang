@@ -5,6 +5,12 @@ public class PaddleController : MonoBehaviour
     public Paddle controlledPaddle;
     public LayerMask raycastLayer;
 
+    private void Start()
+    {
+        controlledPaddle.transform.parent = null;
+        transform.LookAt(Vector3.zero);
+    }
+
     void Update()
     {
         if (controlledPaddle != null)
