@@ -17,9 +17,6 @@ public class Ball : MonoBehaviour
 
     public float spinModifier = 10f;
 
-    public AudioManager audioManager;
-    public AudioSource audioSource;
-    public AudioClip[] audioClip;
 
     [SerializeField]
     private LineController.ColorScheme colorScheme;
@@ -43,7 +40,6 @@ public class Ball : MonoBehaviour
     {
         transform.parent = null;
         rigidbody.velocity = (paddle.HitDirection * paddle.HitForce) + (Vector3)(Vector2.ClampMagnitude(paddle.Velocity, maxSpin) * spinModifier);
-        audioManager.PlaySoundOnce(audioSource, audioClip[0]);
         bouncePaddle = paddle;
         isActive = true;
         if (OnServe != null)
