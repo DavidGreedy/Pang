@@ -26,14 +26,14 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            renderers[i].material.color = LineController.Instance.GetColor(colorScheme);
-            renderers[i].material.SetColor("_EmissionColor", LineController.Instance.GetColor(colorScheme));
-            DynamicGI.SetEmissive(renderers[i], LineController.Instance.GetColor(colorScheme) * 4f);
-            DynamicGI.UpdateMaterials(renderers[i]);
-        }
-        DynamicGI.UpdateEnvironment();
+        //for (int i = 0; i < renderers.Length; i++)
+        //{
+        //    renderers[i].material.color = LineController.Instance.GetColor(colorScheme);
+        //    renderers[i].material.SetColor("_EmissionColor", LineController.Instance.GetColor(colorScheme));
+        //    DynamicGI.SetEmissive(renderers[i], LineController.Instance.GetColor(colorScheme) * 4f);
+        //    DynamicGI.UpdateMaterials(renderers[i]);
+        //}
+        //DynamicGI.UpdateEnvironment();
     }
 
     public void Serve(Paddle paddle)

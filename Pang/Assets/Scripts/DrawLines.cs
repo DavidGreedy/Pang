@@ -35,15 +35,15 @@ public class DrawLines : MonoBehaviour
         //    GL.End();
         //}
 
-        for (int i = 0; i < indices.Length - 1; i++)
-        {
-            GL.Begin(GL.QUADS);
-            lineMat.SetPass(0);
-            GL.Color(new Color(lineMat.color.r, lineMat.color.g, lineMat.color.b, lineMat.color.a));
-            GL.Vertex(vertices[indices[i]]);
-            GL.Vertex(vertices[indices[i + 1]]);
-            GL.End();
-        }
+        //for (int i = 0; i < indices.Length - 1; i++)
+        //{
+        //    GL.Begin(GL.QUADS);
+        //    lineMat.SetPass(0);
+        //    GL.Color(new Color(lineMat.color.r, lineMat.color.g, lineMat.color.b, lineMat.color.a));
+        //    GL.Vertex(vertices[indices[i]]);
+        //    GL.Vertex(vertices[indices[i + 1]]);
+        //    GL.End();
+        //}
     }
 
     // To show the lines in the game window whne it is running
