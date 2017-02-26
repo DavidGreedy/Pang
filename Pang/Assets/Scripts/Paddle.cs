@@ -67,6 +67,8 @@ public class Paddle : MonoBehaviour
 
     public event Action OnSetServe;
 
+
+
     private void Start()
     {
         transform.forward = hitDir;
@@ -119,6 +121,7 @@ public class Paddle : MonoBehaviour
         if (ballToServe != null)
         {
             ballToServe.Serve(this);
+
             ballToServe = null;
         }
     }
