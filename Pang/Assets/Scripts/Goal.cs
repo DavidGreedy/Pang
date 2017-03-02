@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    public Paddle whoGetsPoint;
+    public Team whoGetsPoint;
 }

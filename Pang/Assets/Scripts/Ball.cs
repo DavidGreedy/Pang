@@ -43,6 +43,7 @@ public class Ball : NetworkBehaviour
         rigidbody.velocity = (paddle.HitDirection * paddle.HitForce) + (Vector3)(Vector2.ClampMagnitude(paddle.Velocity, maxSpin) * spinModifier);
         bouncePaddle = paddle;
         isActive = true;
+        rigidbody.isKinematic = false;
         if (OnServe != null)
         {
             OnServe.Invoke(paddle);
@@ -52,6 +53,7 @@ public class Ball : NetworkBehaviour
     public void Reset()
     {
         rigidbody.velocity = Vector3.zero;
+        rigidbody.isKinematic = true;
         isActive = false;
     }
 
@@ -67,13 +69,10 @@ public class Ball : NetworkBehaviour
     {
         if (other.tag == "ScoringVolume")
         {
-            Reset();
+            print("BALL ENTERED GOAL");
             Goal g = other.GetComponent<Goal>();
             g.whoGetsPoint.AddScore(1);
-            if (OnScore != null)
-            {
-                OnScore.Invoke(g.whoGetsPoint);
-            }
+            Reset();
         }
     }
 

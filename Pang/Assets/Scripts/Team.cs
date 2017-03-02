@@ -1,22 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Team : MonoBehaviour
 {
     [SerializeField]
-    private int teamNumber = 0;
+    private int teamNumber;
+
+    private int score;
 
     [SerializeField]
-    private int score = 0;
+    private Text[] scoreText;
 
-    public int TeamNumber
+    public Paddle paddle;
+
+    public Text[] ScoreText
     {
-        get { return teamNumber; }
+        get { return scoreText; }
     }
 
-    public int Score
+    public void SetScoresActive(bool state)
     {
-        get { return score; }
+        scoreText[0].transform.parent.gameObject.SetActive(state);
+    }
+
+    public void AddScore(int amount)
+    {
+        score += amount;
+        Gameplay.Instance.ScoreEvent(this);
+    }
+
+
+    public void SetPaddle(Paddle paddle)
+    {
+        this.paddle = paddle;
+    }
+
+    public int Score()
+    {
+        return score;
     }
 }

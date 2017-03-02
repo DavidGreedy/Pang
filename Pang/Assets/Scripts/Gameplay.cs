@@ -6,69 +6,77 @@ using UnityEngine.UI;
 public class Gameplay : Singleton<Gameplay>
 {
     public int targetScore = 1;
+    public int difficulty = 1;
+
+    [SerializeField]
+    private Team[] teams;
 
     [SerializeField]
     private Ball ballPrefab;
 
+    [SerializeField]
+    private AIPaddle aiPrefab;
+
     private Ball ball;
 
-    public List<Paddle> activePaddles;
+    public PaddleController[] players;
 
     public Canvas winCanvas;
 
     public Text[] playerScoreText;
     public Text[] opponentScoreText;
 
+    [SerializeField]
+    private Paddle paddlePrefab;
+
     private void Awake()
     {
         base.Awake();
-        targetScore = GameManager.targetScore;
-        if (targetScore == 0)
-        {
-            targetScore = 5;
-        }
-        print("Target Score: " + targetScore);
-        activePaddles = new List<Paddle>();
+        teams[0].SetScoresActive(false);
+        teams[1].SetScoresActive(false);
     }
 
     public void Begin()
     {
         ball = Instantiate(ballPrefab);
-        ball.OnScore += ScoreEvent;
-        SetPlayerToServe();
+        Paddle p1Paddle = Instantiate(paddlePrefab);
+        players[0].GivePaddle(p1Paddle);
+        teams[0].SetPaddle(p1Paddle);
+        players[0].SetServer(ball);
+        //SetPlayerToServe();
         ball.Reset();
     }
 
     void SetPlayerToServe()
     {
-        for (int i = 0; i < activePaddles.Count; i++)
+        for (int i = 0; i < players.Length; i++)
         {
-            if (activePaddles[i].tag == "Player")
+            if (players[i].tag == "Player")
             {
-                activePaddles[i].GetComponent<Paddle>().SetServer(ball);
+                players[i].GetComponent<Paddle>().SetServer(ball);
                 return;
             }
         }
     }
 
-    void ScoreEvent(Paddle scoringPaddle) // In the event that someone scores
+    public void ScoreEvent(Team scoringTeam) // In the event that someone scores
     {
-        if (scoringPaddle.Score == targetScore)
+        if (scoringTeam.Score() == targetScore)
         {
             ActivateWinScreen();
-            for (int i = 0; i < activePaddles.Count; i++)
+            for (int i = 0; i < players.Length; i++)
             {
-                Destroy(activePaddles[i].gameObject);
+                Destroy(players[i]);
             }
             Destroy(ball.gameObject);
         }
         else
         {
-            for (int i = 0; i < activePaddles.Count; i++)
+            for (int i = 0; i < players.Length; i++)
             {
-                if (scoringPaddle != activePaddles[i])
+                if (scoringTeam.paddle != players[i].ControlledPaddle)
                 {
-                    activePaddles[i].SetServer(ball);
+                    players[i].SetServer(ball);
                     return;
                 }
             }
@@ -77,20 +85,21 @@ public class Gameplay : Singleton<Gameplay>
 
     void ActivateWinScreen()
     {
-        winCanvas.gameObject.SetActive(true);
+        //winCanvas.gameObject.SetActive(true);
+        print("WINNER");
     }
 
-    public void AddPaddle(Paddle paddle)
+    void CreatePlayer()
     {
-        activePaddles.Add(paddle);
-        if (activePaddles.Count == 1)
+        if (players[0] != null) // If player one is already assigned then this will be player two
         {
-            activePaddles[0].SetScoreTexts(playerScoreText);
+            //players[1] = Instantiate()
         }
-        if (activePaddles.Count == 2)
-        {
-            activePaddles[1].SetScoreTexts(opponentScoreText);
-            Begin();
-        }
+    }
+
+    void AddPlayer(PaddleController paddleController, int playerNumber)
+    {
+        players[playerNumber - 1] = paddleController;
+        print("Player " + (playerNumber - 1) + " Joined");
     }
 }

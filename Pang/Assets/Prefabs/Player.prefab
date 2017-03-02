@@ -630,7 +630,7 @@ MonoBehaviour:
   clampMode: 0
   ballToServe: {fileID: 0}
   score: 0
-  scoreText: {fileID: 0}
+  scoreTexts: []
   colorScheme: 0
   renderers:
   - {fileID: 23261281937668412}

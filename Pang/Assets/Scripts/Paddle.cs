@@ -29,9 +29,6 @@ public class Paddle : NetworkBehaviour
 
     public float HitForce { get { return hitForce; } }
 
-    public bool boostTokenActive;
-    public int boostTokensRemaining;
-
     public Vector3 ServePosition
     { get { return transform.position + (HitDirection * 0.2f); } }
 
@@ -48,29 +45,18 @@ public class Paddle : NetworkBehaviour
 
     public Ball ballToServe = null;
 
-    [SerializeField]
-    private int score;
-    public int Score
-    {
-        get { return score; }
-    }
-
-    [SerializeField]
-    private Text[] scoreTexts;
-
-    [SerializeField]
-    private LineController.ColorScheme colorScheme;
-
-    [SerializeField]
-    private Renderer[] renderers;
+    public Team team;
 
     public event Action OnSetServe;
+
+    public void AssignTeam(Team team)
+    {
+        this.team = team;
+    }
 
     public void Init()
     {
         transform.forward = hitDir;
-        boostTokensRemaining = GameManager.boostTokenAmt;
-        Gameplay.Instance.AddPaddle(this);
     }
 
     public void SetPosition(Vector3 position)
@@ -96,9 +82,7 @@ public class Paddle : NetworkBehaviour
 
     public void AddScore(int amount)
     {
-        score += amount;
-        scoreTexts[0].text = score.ToString();
-        scoreTexts[1].text = score.ToString();
+        team.AddScore(amount);
     }
 
     void Update()
@@ -126,10 +110,5 @@ public class Paddle : NetworkBehaviour
         {
             OnSetServe.Invoke();
         }
-    }
-
-    public void SetScoreTexts(Text[] texts)
-    {
-        scoreTexts = texts;
     }
 }

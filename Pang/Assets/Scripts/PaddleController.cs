@@ -2,35 +2,34 @@
 
 public class PaddleController : MonoBehaviour
 {
-    public Paddle controlledPaddle;
-    public LayerMask raycastLayer;
+    protected Paddle controlledPaddle;
+    Vector3 paddlePosition = Vector3.forward * 5.0f;
 
-    private void Start()
+    public Paddle ControlledPaddle
+    {
+        get { return controlledPaddle; }
+    }
+
+    private void Init()
     {
         controlledPaddle.transform.parent = null;
         transform.LookAt(Vector3.zero);
     }
 
-    void Update()
+    private void OnDestroy()
     {
         if (controlledPaddle != null)
-        {
-            RaycastHit hit;
-            Ray lookRay = new Ray(transform.position, transform.forward);
-            if (Physics.Raycast(lookRay, out hit, Mathf.Infinity, raycastLayer))
-            {
-                if (hit.collider.tag == "PaddleWall")
-                    controlledPaddle.SetPosition(hit.point);
-            }
-            Debug.DrawLine(transform.position, hit.point, Color.red);
+            Destroy(controlledPaddle.gameObject);
+    }
 
-            //Original Method
-            //controlledPaddle.SetPosition((Vector3.ProjectOnPlane(transform.forward * controlledPaddle.PosZ, controlledPaddle.HitDirection) + (controlledPaddle.HitDirection * controlledPaddle.PosZ)));
+    public void SetServer(Ball ball)
+    {
+        controlledPaddle.SetServer(ball);
+    }
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                controlledPaddle.Serve();
-            }
-        }
+    public void GivePaddle(Paddle paddle)
+    {
+        controlledPaddle = paddle;
+        paddle.transform.position = transform.position + paddlePosition;
     }
 }

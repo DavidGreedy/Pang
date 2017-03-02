@@ -99,35 +99,26 @@ public class GameSetUpManager : Singleton<GameSetUpManager>
 
     void LoadMenu()
     {
-        menuObj.SetActive(true);
-        //menuPlayer.SetActive(true);
         Arena.SetActive(true);
     }
 
     void LoadOnlineMatch()
     {
-        menuObj.SetActive(false);
-        menuPlayer.SetActive(false);
-        GivePaddle(true);
+
     }
 
     void LoadOfflineMatch()
     {
-        menuObj.SetActive(false);
-        menuPlayer.SetActive(false);
-        GivePaddle(false);
+
     }
 
     void LoadRallyMatch()
     {
-        menuObj.SetActive(false);
-        menuPlayer.SetActive(false);
     }
 
     void LoadObstacleMatch()
     {
-        menuObj.SetActive(false);
-        menuPlayer.SetActive(false);
+
     }
 
     public void HostTrue()
@@ -154,16 +145,16 @@ public class GameSetUpManager : Singleton<GameSetUpManager>
         playerNum = 0;
     }
 
-    public void GivePaddle(bool isNetworked)
-    {
-        PaddleController controller = Camera.main.GetComponent<PaddleController>();
-        controller.enabled = true;
-        controller.controlledPaddle = Instantiate(paddlePrefab);
-        if (isNetworked)
-        {
-            ClientScene.RegisterPrefab(controller.controlledPaddle.gameObject);
-        }
-        controller.controlledPaddle.Init();
-        Gameplay.Instance.Begin();
-    }
+    //public void GivePaddle(bool isNetworked)
+    //{
+    //    PaddleController controller = Camera.main.GetComponent<PaddleController>();
+    //    controller.enabled = true;
+    //    controller.ControlledPaddle = Instantiate(paddlePrefab);
+    //    if (isNetworked)
+    //    {
+    //        ClientScene.RegisterPrefab(controller.ControlledPaddle.gameObject);
+    //    }
+    //    controller.ControlledPaddle.Init();
+    //    Gameplay.Instance.Begin();
+    //}
 }

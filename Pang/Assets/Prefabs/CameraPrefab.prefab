@@ -61,12 +61,10 @@ GameObject:
   - component: {fileID: 92903506524115760}
   - component: {fileID: 81870457083036172}
   - component: {fileID: 114215461036718478}
-  - component: {fileID: 114894915011755260}
   - component: {fileID: 114564674876814020}
   - component: {fileID: 114080705185167080}
   - component: {fileID: 114747754774039994}
-  - component: {fileID: 114720124919365994}
-  - component: {fileID: 114246728813765762}
+  - component: {fileID: 114652506988931420}
   m_Layer: 0
   m_Name: CameraPrefab
   m_TagString: MainCamera
@@ -136,8 +134,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713632341622374}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.16059887, y: 1.3283991, z: 6.1492434}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4079807135247432}
@@ -323,38 +321,6 @@ MonoBehaviour:
   raycasterEventMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114246728813765762
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1713632341622374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 154
-    i1: 100
-    i2: 9
-    i3: 145
-    i4: 204
-    i5: 30
-    i6: 102
-    i7: 84
-    i8: 202
-    i9: 45
-    i10: 206
-    i11: 214
-    i12: 70
-    i13: 242
-    i14: 23
-    i15: 169
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!114 &114260328224551496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -464,24 +430,20 @@ MonoBehaviour:
   screenParallax: 0
   stereoPaddingX: 0
   stereoPaddingY: 0
---- !u!114 &114720124919365994
+--- !u!114 &114652506988931420
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713632341622374}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cadb878a857aa94b8154c97a4ae4305, type: 3}
+  m_Script: {fileID: 11500000, guid: d59fff7a7654b5c469a14e7a9181576c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineMat: {fileID: 2100000, guid: 88e38e1300e5d024e9b5f2d031309aad, type: 2}
-  targetMesh: {fileID: 4300038, guid: e3731c0726ce3174c926ec3c3c5a2485, type: 3}
-  points:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  raycastLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &114747754774039994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -520,21 +482,6 @@ MonoBehaviour:
   blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
   brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
     type: 3}
---- !u!114 &114894915011755260
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1713632341622374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 032d5c50a3cad6849b5b58d3e18e31a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlledPaddle: {fileID: 0}
-  raycastLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &114933291051505938
 MonoBehaviour:
   m_ObjectHideFlags: 1
