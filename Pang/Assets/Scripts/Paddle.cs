@@ -66,19 +66,11 @@ public class Paddle : NetworkBehaviour
 
     public event Action OnSetServe;
 
-    private void Start()
+    public void Init()
     {
         transform.forward = hitDir;
         boostTokensRemaining = GameManager.boostTokenAmt;
         Gameplay.Instance.AddPaddle(this);
-
-        //for (int i = 0; i < renderers.Length; i++)
-        //{
-        //    renderers[i].material.color = LineController.Instance.GetColor(colorScheme);
-        //    renderers[i].material.SetColor("_EmissionColor", LineController.Instance.GetColor(colorScheme));
-        //    DynamicGI.SetEmissive(renderers[i], LineController.Instance.GetColor(colorScheme) * 4f);
-        //}
-        //DynamicGI.UpdateEnvironment();
     }
 
     public void SetPosition(Vector3 position)
@@ -107,7 +99,6 @@ public class Paddle : NetworkBehaviour
         score += amount;
         scoreTexts[0].text = score.ToString();
         scoreTexts[1].text = score.ToString();
-
     }
 
     void Update()

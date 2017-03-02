@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Client : MonoBehaviour {
-
+public class Client : MonoBehaviour
+{
     NetworkManager networkManager;
 
-	// Use this for initialization
-	void Start ()
+    void Start()
     {
-        networkManager = FindObjectOfType<NetworkManager>();	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        networkManager = FindObjectOfType<NetworkManager>();
+        networkManager.StartHost();
+    }
 
     public void ConnectAsClient()
     {

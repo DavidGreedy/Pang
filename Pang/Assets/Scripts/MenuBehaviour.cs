@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuBehaviour : MonoBehaviour {
-
+public class MenuBehaviour : MonoBehaviour
+{
     public GameObject[] menuPanels;
     public GameObject recentreText;
     public Text scoreText, descText;
 
-
-	// Use this for initialization
-	void Start ()
+    void Start()
     {
-        
-        
     }
 
     public void StartMenu()
@@ -91,7 +87,7 @@ public class MenuBehaviour : MonoBehaviour {
             GameManager.targetScore += value;
             scoreText.text = GameManager.targetScore.ToString();
         }
-            
+
     }
 
     public void MinusScore(int value)
@@ -104,7 +100,6 @@ public class MenuBehaviour : MonoBehaviour {
     }
 
     #endregion
-
 
     public void ShowText(string text)
     {
@@ -136,5 +131,4 @@ public class MenuBehaviour : MonoBehaviour {
     {
         GvrViewer.Instance.Recenter();
     }
-
 }

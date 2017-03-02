@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class GameSetUpManager : Singleton<GameSetUpManager> {
-
+public class GameSetUpManager : Singleton<GameSetUpManager>
+{
     //Menu gameObjects
     public GameObject menuObj, menuPlayer;
 
@@ -20,21 +21,32 @@ public class GameSetUpManager : Singleton<GameSetUpManager> {
 
     public int playerNum;
 
+    [SerializeField]
+    private Paddle paddlePrefab;
+
     //Switch state to load in appropriate objects
-    public enum GameState {Menu, OfflineMatch, OnlineMatch, Obstacle, Rally}
+    public enum GameState
+    {
+        Menu,
+        OfflineMatch,
+        OnlineMatch,
+        Obstacle,
+        Rally
+    }
 
     public GameState _gameState;
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         _gameState = GameState.Menu;
         SwitchState();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public void ChangeState(int stateNum)
     {
@@ -71,16 +83,16 @@ public class GameSetUpManager : Singleton<GameSetUpManager> {
                 LoadMenu();
                 break;
             case GameState.OfflineMatch:
-
+                LoadOfflineMatch();
                 break;
             case GameState.OnlineMatch:
-
+                LoadOnlineMatch();
                 break;
             case GameState.Obstacle:
-
+                LoadObstacleMatch();
                 break;
             case GameState.Rally:
-
+                LoadRallyMatch();
                 break;
         }
     }
@@ -88,7 +100,7 @@ public class GameSetUpManager : Singleton<GameSetUpManager> {
     void LoadMenu()
     {
         menuObj.SetActive(true);
-        menuPlayer.SetActive(true);
+        //menuPlayer.SetActive(true);
         Arena.SetActive(true);
     }
 
@@ -96,20 +108,20 @@ public class GameSetUpManager : Singleton<GameSetUpManager> {
     {
         menuObj.SetActive(false);
         menuPlayer.SetActive(false);
+        GivePaddle(true);
     }
 
     void LoadOfflineMatch()
     {
         menuObj.SetActive(false);
         menuPlayer.SetActive(false);
-
+        GivePaddle(false);
     }
 
     void LoadRallyMatch()
     {
         menuObj.SetActive(false);
         menuPlayer.SetActive(false);
-
     }
 
     void LoadObstacleMatch()
@@ -142,6 +154,16 @@ public class GameSetUpManager : Singleton<GameSetUpManager> {
         playerNum = 0;
     }
 
-
-
+    public void GivePaddle(bool isNetworked)
+    {
+        PaddleController controller = Camera.main.GetComponent<PaddleController>();
+        controller.enabled = true;
+        controller.controlledPaddle = Instantiate(paddlePrefab);
+        if (isNetworked)
+        {
+            ClientScene.RegisterPrefab(controller.controlledPaddle.gameObject);
+        }
+        controller.controlledPaddle.Init();
+        Gameplay.Instance.Begin();
+    }
 }

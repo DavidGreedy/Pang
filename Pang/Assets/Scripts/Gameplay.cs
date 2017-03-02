@@ -7,12 +7,12 @@ public class Gameplay : Singleton<Gameplay>
 {
     public int targetScore = 1;
 
-    public Ball ball;
+    [SerializeField]
+    private Ball ballPrefab;
+
+    private Ball ball;
 
     public List<Paddle> activePaddles;
-
-    [SerializeField]
-    private SceneManagement sceneManager;
 
     public Canvas winCanvas;
 
@@ -29,11 +29,12 @@ public class Gameplay : Singleton<Gameplay>
         }
         print("Target Score: " + targetScore);
         activePaddles = new List<Paddle>();
-        ball.OnScore += ScoreEvent;
     }
 
-    void Begin()
+    public void Begin()
     {
+        ball = Instantiate(ballPrefab);
+        ball.OnScore += ScoreEvent;
         SetPlayerToServe();
         ball.Reset();
     }
@@ -77,12 +78,6 @@ public class Gameplay : Singleton<Gameplay>
     void ActivateWinScreen()
     {
         winCanvas.gameObject.SetActive(true);
-        Invoke("OpenMenuScene", 5f);
-    }
-
-    void OpenMenuScene()
-    {
-        sceneManager.ChangeScene(0);
     }
 
     public void AddPaddle(Paddle paddle)

@@ -118,7 +118,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1704475592505946
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -309,6 +309,7 @@ Transform:
   - {fileID: 4224553144583994}
   - {fileID: 4166141699495264}
   - {fileID: 4424944362915128}
+  - {fileID: 4597420346392128}
   m_Father: {fileID: 4779296007743184}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -423,11 +424,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1704475592505946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 6}
+  m_LocalPosition: {x: 0, y: 0, z: -0.78999996}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_Children: []
-  m_Father: {fileID: 4779296007743184}
-  m_RootOrder: 4
+  m_Father: {fileID: 4047243275340660}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4692931660993744
 Transform:
@@ -449,14 +450,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1993556476005238}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0.16059887, y: 1.3283991, z: 6.1492434}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4024752510217704}
   - {fileID: 4383340587059410}
   - {fileID: 4692931660993744}
   - {fileID: 4047243275340660}
-  - {fileID: 4597420346392128}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1226,7 +1226,7 @@ MonoBehaviour:
   clampMode: 0
   ballToServe: {fileID: 0}
   score: 0
-  scoreText: {fileID: 0}
+  scoreTexts: []
   colorScheme: 0
   renderers:
   - {fileID: 23525768840689556}
