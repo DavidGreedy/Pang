@@ -24,7 +24,12 @@
 
 public static class GPGSIds
 {
-        public const string leaderboard_pongvr_rally_leaderboard = "CgkI6P7g-r4ZEAIQAA"; // <GPGSID>
+        public const string achievement_5 = "CgkInLqa5eIHEAIQBQ"; // <GPGSID>
+        public const string leaderboard_pongvr_rally_leaderboard = "CgkInLqa5eIHEAIQBg"; // <GPGSID>
+        public const string achievement_1 = "CgkInLqa5eIHEAIQAQ"; // <GPGSID>
+        public const string achievement_2 = "CgkInLqa5eIHEAIQAg"; // <GPGSID>
+        public const string achievement_3 = "CgkInLqa5eIHEAIQAw"; // <GPGSID>
+        public const string achievement_4 = "CgkInLqa5eIHEAIQBA"; // <GPGSID>
 
 }
 
