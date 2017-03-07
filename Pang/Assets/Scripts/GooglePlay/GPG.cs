@@ -44,6 +44,11 @@ public class GPG : MonoBehaviour
         Debug.Log(leaderboard);
     }
 
+    public void OnShowAchievements()
+    {
+        ((PlayGamesPlatform)Social.Active).ShowAchievementsUI();
+    }
+
     public void OnAddScoreToLeaderBoard()
     {
         if (Social.localUser.authenticated)
