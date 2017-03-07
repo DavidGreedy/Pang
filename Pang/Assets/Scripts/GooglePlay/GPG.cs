@@ -16,7 +16,6 @@ public class GPG : MonoBehaviour
 
         // Activate the Google Play Games platform
         PlayGamesPlatform.Activate();
-        LogIn();
 
         
     }
