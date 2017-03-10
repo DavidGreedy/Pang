@@ -367,6 +367,7 @@
     <Compile Include="Assets\Scripts\SkyboxRandomizer.cs" />
     <Compile Include="Assets\Scripts\Statistics.cs" />
     <Compile Include="Assets\Scripts\Team.cs" />
+    <Compile Include="Assets\VersionController.cs" />
     <Compile Include="Assets\VolumetricLines\Scripts\LineController.cs" />
     <Compile Include="Assets\VolumetricLines\Scripts\SetFovGlobalShaderVariable.cs" />
     <Compile Include="Assets\VolumetricLines\Scripts\Utils\ExposePropertyAttribute.cs" />
