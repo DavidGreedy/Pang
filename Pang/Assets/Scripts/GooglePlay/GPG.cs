@@ -7,8 +7,6 @@ public class GPG : MonoBehaviour
 
     public string leaderboard;
 
-
-
     void Start()
     {
         // recommended for debugging:
@@ -17,23 +15,17 @@ public class GPG : MonoBehaviour
         // Activate the Google Play Games platform
         PlayGamesPlatform.Activate();
 
-        
+
     }
 
     public void LogIn()
     {
         Social.localUser.Authenticate((bool success) =>
         {
-            if (success)
-            {
-                Debug.Log("Login Sucess");
-            }
-            else
-            {
-                Debug.Log("Login failed");
-            }
+            Debug.Log(success);
         });
     }
+
 
 
     public void OnShowLeaderBoard()

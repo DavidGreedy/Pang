@@ -302,6 +302,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1329822232}
+        m_MethodName: SetState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &206662632
@@ -1250,8 +1261,8 @@ MonoBehaviour:
     type: 2}
   m_AutoCreatePlayer: 0
   m_PlayerSpawnMethod: 0
-  m_OfflineScene: Menu
-  m_OnlineScene: Menu
+  m_OfflineScene: MenuScene
+  m_OnlineScene: MenuScene
   m_SpawnPrefabs: []
   m_CustomConfig: 0
   m_MaxConnections: 4
@@ -1308,12 +1319,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &810014057 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114578847811479804, guid: 78af4d84d3710194985bfe9f79ad43fa,
-    type: 2}
-  m_PrefabInternal: {fileID: 848341347}
-  m_Script: {fileID: 11500000, guid: 2454e1e57cd6d5a45bf0f869f45db35b, type: 3}
 --- !u!1 &819464599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,7 +1458,7 @@ Prefab:
     - target: {fileID: 224223349014278276, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 224808458257461038, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
@@ -1473,7 +1478,7 @@ Prefab:
     - target: {fileID: 224808458257461038, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 224402427510270672, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
@@ -1493,7 +1498,7 @@ Prefab:
     - target: {fileID: 224402427510270672, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 224757841737828344, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
@@ -1513,7 +1518,7 @@ Prefab:
     - target: {fileID: 224757841737828344, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 224214175438704702, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
@@ -1533,7 +1538,7 @@ Prefab:
     - target: {fileID: 224214175438704702, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 224387114175151754, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
@@ -1553,7 +1558,7 @@ Prefab:
     - target: {fileID: 224387114175151754, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5565c1754614d524683eabddf1bee39b, type: 2}
@@ -1628,6 +1633,11 @@ Prefab:
       value: 
       objectReference: {fileID: 114133874655843114, guid: f1d7d87a29c7f44408ca5bb049dcea94,
         type: 2}
+    - target: {fileID: 114578847811479804, guid: 78af4d84d3710194985bfe9f79ad43fa,
+        type: 2}
+      propertyPath: targetScore
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78af4d84d3710194985bfe9f79ad43fa, type: 2}
   m_IsPrefabParent: 0
@@ -1904,6 +1914,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1329822232}
+        m_MethodName: SetState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -2825,6 +2846,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1329822232}
+        m_MethodName: SetState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &1154010751
@@ -3610,6 +3642,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1329822232}
+        m_MethodName: SetState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -5348,6 +5391,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1329822232}
+        m_MethodName: SetState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &1953152360
@@ -5634,6 +5688,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1329822232}
+        m_MethodName: SetState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &2047081562
@@ -5766,8 +5831,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 810014057}
-        m_MethodName: Begin
+      - m_Target: {fileID: 1329822232}
+        m_MethodName: BeginGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

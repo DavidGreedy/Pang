@@ -27,72 +27,43 @@ public class GameSetUpManager : Singleton<GameSetUpManager>
     //Switch state to load in appropriate objects
     public enum GameState
     {
-        Menu,
-        OfflineMatch,
-        OnlineMatch,
-        Obstacle,
-        Rally
+        MENU = 0,
+        COMPUTER = 1,
+        ONLINE = 2,
+        OBSTACLE = 3,
+        RALLY = 4
     }
 
     public GameState _gameState;
-    // Use this for initialization
+
     void Start()
     {
-        _gameState = GameState.Menu;
-        SwitchState();
+        _gameState = GameState.MENU;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetState(int state)
     {
-
+        _gameState = (GameState)state;
     }
 
-    public void ChangeState(int stateNum)
-    {
-        switch (stateNum)
-        {
-            case 0:
-                _gameState = GameState.Menu;
-                SwitchState();
-                break;
-            case 1:
-                _gameState = GameState.OfflineMatch;
-                SwitchState();
-                break;
-            case 2:
-                _gameState = GameState.OnlineMatch;
-                SwitchState();
-                break;
-            case 3:
-                _gameState = GameState.Obstacle;
-                SwitchState();
-                break;
-            case 4:
-                _gameState = GameState.Rally;
-                SwitchState();
-                break;
-        }
-    }
-
-    public void SwitchState()
+    public void BeginGame()
     {
         switch (_gameState)
         {
-            case GameState.Menu:
+            case GameState.MENU:
                 LoadMenu();
                 break;
-            case GameState.OfflineMatch:
-                LoadOfflineMatch();
+            case GameState.COMPUTER:
+                LoadOffline();
                 break;
-            case GameState.OnlineMatch:
-                LoadOnlineMatch();
+            case GameState.ONLINE:
+                LoadOnline();
                 break;
-            case GameState.Obstacle:
-                LoadObstacleMatch();
+            case GameState.OBSTACLE:
+                LoadObstacle();
                 break;
-            case GameState.Rally:
-                LoadRallyMatch();
+            case GameState.RALLY:
+                LoadRally();
                 break;
         }
     }
@@ -102,21 +73,23 @@ public class GameSetUpManager : Singleton<GameSetUpManager>
         Arena.SetActive(true);
     }
 
-    void LoadOnlineMatch()
+    void LoadOnline()
     {
 
     }
 
-    void LoadOfflineMatch()
+    void LoadOffline()
+    {
+        Gameplay.Instance.Begin();
+        Gameplay.Instance.CreateAIOpponent();
+    }
+
+    void LoadRally()
     {
 
     }
 
-    void LoadRallyMatch()
-    {
-    }
-
-    void LoadObstacleMatch()
+    void LoadObstacle()
     {
 
     }

@@ -18,24 +18,13 @@ public class Ball : NetworkBehaviour
 
     public float spinModifier = 10f;
 
-
     [SerializeField]
     private LineController.ColorScheme colorScheme;
 
     [SerializeField]
     private Renderer[] renderers;
 
-    private void Start()
-    {
-        //for (int i = 0; i < renderers.Length; i++)
-        //{
-        //    renderers[i].material.color = LineController.Instance.GetColor(colorScheme);
-        //    renderers[i].material.SetColor("_EmissionColor", LineController.Instance.GetColor(colorScheme));
-        //    DynamicGI.SetEmissive(renderers[i], LineController.Instance.GetColor(colorScheme) * 4f);
-        //    DynamicGI.UpdateMaterials(renderers[i]);
-        //}
-        //DynamicGI.UpdateEnvironment();
-    }
+    private Vector2 spinTarget = Vector2.zero;
 
     public void Serve(Paddle paddle)
     {
@@ -61,7 +50,7 @@ public class Ball : NetworkBehaviour
     {
         if (isActive)
         {
-            rigidbody.AddForce(-(Vector2)transform.position.normalized * spinModifier * 0.2f);
+            rigidbody.AddForce(spinTarget - (Vector2)transform.position.normalized * spinModifier * 0.2f);
         }
     }
 

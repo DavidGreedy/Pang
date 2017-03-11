@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Gameplay : Singleton<Gameplay>
 {
-    public int targetScore = 1;
+    public int targetScore = 10;
     public int difficulty = 1;
 
     [SerializeField]
@@ -14,14 +14,9 @@ public class Gameplay : Singleton<Gameplay>
     [SerializeField]
     private Ball ballPrefab;
 
-    [SerializeField]
-    private AIPaddle aiPrefab;
-
     private Ball ball;
 
     public PaddleController[] players;
-
-    public Canvas winCanvas;
 
     public Text[] playerScoreText;
     public Text[] opponentScoreText;
@@ -34,6 +29,13 @@ public class Gameplay : Singleton<Gameplay>
         base.Awake();
         teams[0].SetScoresActive(false);
         teams[1].SetScoresActive(false);
+    }
+
+    public void CreateAIOpponent()
+    {
+        Paddle p = Instantiate(paddlePrefab, -players[0].transform.position, Quaternion.LookRotation(Vector3.zero));
+        players[1] = p.gameObject.AddComponent<AIPaddle>();
+        players[1].GetComponent<AIPaddle>().Init(p, ball, difficulty);
     }
 
     public void Begin()
@@ -61,6 +63,7 @@ public class Gameplay : Singleton<Gameplay>
 
     public void ScoreEvent(Team scoringTeam) // In the event that someone scores
     {
+        print(scoringTeam.Score() + "   " + scoringTeam + "   " + targetScore);
         if (scoringTeam.Score() == targetScore)
         {
             ActivateWinScreen();
