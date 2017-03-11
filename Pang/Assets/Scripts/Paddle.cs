@@ -5,15 +5,7 @@ using UnityEngine.UI;
 
 public class Paddle : NetworkBehaviour
 {
-    [SerializeField]
-    protected Vector3 hitDir;
-
     public Vector2 Velocity { get { return transform.position - previousPosition; } }
-
-    public Vector3 HitDirection
-    {
-        get { return hitDir; }
-    }
 
     [SerializeField]
     protected float speed;
@@ -30,7 +22,7 @@ public class Paddle : NetworkBehaviour
     public float HitForce { get { return hitForce; } }
 
     public Vector3 ServePosition
-    { get { return transform.position + (HitDirection * 0.2f); } }
+    { get { return transform.position + (transform.forward * 0.2f); } }
 
     public enum ClampMode
     {
@@ -52,11 +44,6 @@ public class Paddle : NetworkBehaviour
     public void AssignTeam(Team team)
     {
         this.team = team;
-    }
-
-    public void Init()
-    {
-        transform.forward = hitDir;
     }
 
     public void SetPosition(Vector3 position)

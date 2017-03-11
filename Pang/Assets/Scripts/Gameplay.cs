@@ -33,7 +33,7 @@ public class Gameplay : Singleton<Gameplay>
 
     public void CreateAIOpponent()
     {
-        Paddle p = Instantiate(paddlePrefab, -players[0].transform.position, Quaternion.LookRotation(Vector3.zero));
+        Paddle p = Instantiate(paddlePrefab, -players[0].transform.position, Quaternion.LookRotation(new Vector3(0, 0, -1)));
         players[1] = p.gameObject.AddComponent<AIPaddle>();
         players[1].GetComponent<AIPaddle>().Init(p, ball, difficulty);
     }

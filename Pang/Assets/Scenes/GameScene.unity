@@ -1458,7 +1458,7 @@ Prefab:
     - target: {fileID: 224223349014278276, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224808458257461038, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
@@ -1478,7 +1478,7 @@ Prefab:
     - target: {fileID: 224808458257461038, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224402427510270672, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
@@ -1498,7 +1498,7 @@ Prefab:
     - target: {fileID: 224402427510270672, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224757841737828344, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
@@ -1518,7 +1518,7 @@ Prefab:
     - target: {fileID: 224757841737828344, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224214175438704702, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
@@ -1538,7 +1538,7 @@ Prefab:
     - target: {fileID: 224214175438704702, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224387114175151754, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
@@ -1558,7 +1558,7 @@ Prefab:
     - target: {fileID: 224387114175151754, guid: 5565c1754614d524683eabddf1bee39b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5565c1754614d524683eabddf1bee39b, type: 2}
