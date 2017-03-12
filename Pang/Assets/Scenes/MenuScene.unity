@@ -819,7 +819,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1018797483}
-        m_MethodName: Achievements
+        m_MethodName: OnShowAchievements
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1638,10 +1638,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1018797482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e66f6e1882378d54aa8ce4b0be6f95b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 19f045b8cecb3c14fb62f6dcda26178b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderboard: CgkInLqa5eIHEAIQBg
+  leaderboard: CgkIwvuCmsEREAIQBg
 --- !u!4 &1018797484
 Transform:
   m_ObjectHideFlags: 0
@@ -3046,7 +3046,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1018797483}
-        m_MethodName: LeaderBoard
+        m_MethodName: OnShowLeaderBoard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
