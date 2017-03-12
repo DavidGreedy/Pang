@@ -29,7 +29,7 @@ public class Ball : NetworkBehaviour
     public void Serve(Paddle paddle)
     {
         transform.parent = null;
-        rigidbody.velocity = (paddle.HitDirection * paddle.HitForce) + (Vector3)(Vector2.ClampMagnitude(paddle.Velocity, maxSpin) * spinModifier);
+        rigidbody.velocity = (paddle.transform.forward * paddle.HitForce) + (Vector3)(Vector2.ClampMagnitude(paddle.Velocity, maxSpin) * spinModifier);
         bouncePaddle = paddle;
         isActive = true;
         rigidbody.isKinematic = false;
