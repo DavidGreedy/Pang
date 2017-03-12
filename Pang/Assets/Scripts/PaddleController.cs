@@ -10,12 +10,6 @@ public class PaddleController : MonoBehaviour
         get { return controlledPaddle; }
     }
 
-    private void Init()
-    {
-        controlledPaddle.transform.parent = null;
-        transform.LookAt(Vector3.zero);
-    }
-
     private void OnDestroy()
     {
         if (controlledPaddle != null)

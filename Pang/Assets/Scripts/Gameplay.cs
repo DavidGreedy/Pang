@@ -18,9 +18,6 @@ public class Gameplay : Singleton<Gameplay>
 
     public PaddleController[] players;
 
-    public Text[] playerScoreText;
-    public Text[] opponentScoreText;
-
     [SerializeField]
     private Paddle paddlePrefab;
 
@@ -45,6 +42,10 @@ public class Gameplay : Singleton<Gameplay>
         players[0].GivePaddle(p1Paddle);
         teams[0].SetPaddle(p1Paddle);
         players[0].SetServer(ball);
+
+        teams[0].SetScoresActive(true);
+        teams[1].SetScoresActive(true);
+
         //SetPlayerToServe();
         ball.Reset();
     }
@@ -63,7 +64,11 @@ public class Gameplay : Singleton<Gameplay>
 
     public void ScoreEvent(Team scoringTeam) // In the event that someone scores
     {
-        print(scoringTeam.Score() + "   " + scoringTeam + "   " + targetScore);
+        scoringTeam.AddScore(1);
+
+        print(string.Format("{0} Scored! ({1})", scoringTeam == teams[0] ? "Team 1" : "Team 2", scoringTeam.Score().ToString()));
+        print(string.Format("{0}:{1}", teams[0].Score(), teams[1].Score()));
+
         if (scoringTeam.Score() == targetScore)
         {
             ActivateWinScreen();

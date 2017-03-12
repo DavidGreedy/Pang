@@ -60,7 +60,7 @@ public class Ball : NetworkBehaviour
         {
             print("BALL ENTERED GOAL");
             Goal g = other.GetComponent<Goal>();
-            g.whoGetsPoint.AddScore(1);
+            Gameplay.Instance.ScoreEvent(g.whoGetsPoint);
             Reset();
         }
     }
