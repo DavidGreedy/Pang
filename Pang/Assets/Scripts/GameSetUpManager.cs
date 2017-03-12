@@ -91,6 +91,12 @@ public class GameSetUpManager : Singleton<GameSetUpManager>
         Gameplay.Instance.targetScore = (int)slider.value;
     }
 
+    public void SetDifficulty(Slider slider)
+    {
+        Debug.Log(string.Format("Difficulty = {0}", (int)slider.value));
+        Gameplay.Instance.difficulty = (int)slider.value;
+    }
+
     void LoadRally()
     {
 
