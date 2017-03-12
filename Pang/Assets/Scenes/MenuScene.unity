@@ -691,6 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0a46c1372bf6f4aa23d21769525a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  versionType: 0
 --- !u!224 &333613545
 RectTransform:
   m_ObjectHideFlags: 0
@@ -818,7 +819,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1018797483}
-        m_MethodName: OnShowAchievements
+        m_MethodName: Achievements
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3045,7 +3046,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1018797483}
-        m_MethodName: OnShowLeaderBoard
+        m_MethodName: LeaderBoard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
