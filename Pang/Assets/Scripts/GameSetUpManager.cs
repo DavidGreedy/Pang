@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class GameSetUpManager : Singleton<GameSetUpManager>
 {
@@ -82,6 +83,12 @@ public class GameSetUpManager : Singleton<GameSetUpManager>
     {
         Gameplay.Instance.Begin();
         Gameplay.Instance.CreateAIOpponent();
+    }
+
+    public void SetTargetScore(Slider slider)
+    {
+        Debug.Log(string.Format("Target Score = {0}", (int)slider.value));
+        Gameplay.Instance.targetScore = (int)slider.value;
     }
 
     void LoadRally()
