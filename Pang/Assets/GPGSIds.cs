@@ -24,12 +24,12 @@
 
 public static class GPGSIds
 {
-        public const string achievement_5 = "CgkInLqa5eIHEAIQBQ"; // <GPGSID>
-        public const string leaderboard_pongvr_rally_leaderboard = "CgkInLqa5eIHEAIQBg"; // <GPGSID>
-        public const string achievement_1 = "CgkInLqa5eIHEAIQAQ"; // <GPGSID>
-        public const string achievement_2 = "CgkInLqa5eIHEAIQAg"; // <GPGSID>
-        public const string achievement_3 = "CgkInLqa5eIHEAIQAw"; // <GPGSID>
-        public const string achievement_4 = "CgkInLqa5eIHEAIQBA"; // <GPGSID>
+        public const string achievement_5 = "CgkIwvuCmsEREAIQBQ"; // <GPGSID>
+        public const string achievement_win_against_the_computer = "CgkIwvuCmsEREAIQAQ"; // <GPGSID>
+        public const string leaderboard_pongvr_rally_leaderboard_difficulty_20 = "CgkIwvuCmsEREAIQBg"; // <GPGSID>
+        public const string achievement_play_multiplayer = "CgkIwvuCmsEREAIQAg"; // <GPGSID>
+        public const string achievement_3 = "CgkIwvuCmsEREAIQAw"; // <GPGSID>
+        public const string achievement_4 = "CgkIwvuCmsEREAIQBA"; // <GPGSID>
 
 }
 
