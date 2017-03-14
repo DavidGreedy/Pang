@@ -24,6 +24,8 @@ public class Gameplay : Singleton<Gameplay>
     [SerializeField]
     private Paddle paddlePrefab;
 
+    public bool isPaused;
+
     private void Awake()
     {
         base.Awake();

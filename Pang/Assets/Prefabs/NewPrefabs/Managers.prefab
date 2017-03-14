@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4583165261684178}
   - component: {fileID: 114091255716670032}
   - component: {fileID: 114578847811479804}
+  - component: {fileID: 114083672127103742}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -103,6 +104,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114083672127103742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1537063025604340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b57b54936e03fb40ade70e9b620b024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleHolderObj: {fileID: 0}
+  obstacles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  obstacleRate: 0
+  obstaclesDifficulty: 0
 --- !u!114 &114091255716670032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,18 +182,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2454e1e57cd6d5a45bf0f869f45db35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetScore: 1
+  targetScore: 10
   difficulty: 1
+  teams:
+  - {fileID: 0}
+  - {fileID: 0}
   ballPrefab: {fileID: 114421611782431550, guid: 992258a985d1a064d95ce68bf54e4ba3,
     type: 2}
-  aiPrefab: {fileID: 114649204681364644, guid: d91092763a25e2b4ea7010b88c8352b8, type: 2}
-  players: []
-  winCanvas: {fileID: 0}
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
   playerScoreText: []
   opponentScoreText: []
-  paddleSlotTransforms:
-  - {fileID: 0}
-  - {fileID: 0}
+  paddlePrefab: {fileID: 114133874655843114, guid: f1d7d87a29c7f44408ca5bb049dcea94,
+    type: 2}
+  isPaused: 0
 --- !u!114 &114602035374096296
 MonoBehaviour:
   m_ObjectHideFlags: 1

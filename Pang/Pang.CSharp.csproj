@@ -342,6 +342,7 @@
     <Compile Include="Assets\GoogleVR\Scripts\Utilities\GvrIntent.cs" />
     <Compile Include="Assets\GoogleVR\Scripts\Utilities\GvrUIHelpers.cs" />
     <Compile Include="Assets\GoogleVR\Scripts\Video\GvrVideoPlayerTexture.cs" />
+    <Compile Include="Assets\ObstacleController.cs" />
     <Compile Include="Assets\Prefabs\Client.cs" />
     <Compile Include="Assets\Scripts\AIPaddle.cs" />
     <Compile Include="Assets\Scripts\Ball.cs" />
@@ -350,6 +351,7 @@
     <Compile Include="Assets\Scripts\FPS.cs" />
     <Compile Include="Assets\Scripts\GPG.cs" />
     <Compile Include="Assets\Scripts\GameSetUpManager.cs" />
+    <Compile Include="Assets\Scripts\GameState.cs" />
     <Compile Include="Assets\Scripts\Gameplay.cs" />
     <Compile Include="Assets\Scripts\Goal.cs" />
     <Compile Include="Assets\Scripts\ListComponent.cs" />
@@ -357,6 +359,7 @@
     <Compile Include="Assets\Scripts\MenuTree.cs" />
     <Compile Include="Assets\Scripts\MusicManager.cs" />
     <Compile Include="Assets\Scripts\NetworkSetup.cs" />
+    <Compile Include="Assets\Scripts\ObstacleBehaviour.cs" />
     <Compile Include="Assets\Scripts\Paddle.cs" />
     <Compile Include="Assets\Scripts\PaddleController.cs" />
     <Compile Include="Assets\Scripts\PlayerPaddleController.cs" />
