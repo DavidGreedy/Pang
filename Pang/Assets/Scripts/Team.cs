@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -14,22 +15,16 @@ public class Team : MonoBehaviour
 
     public Paddle paddle;
 
-    public Text[] ScoreText
-    {
-        get { return scoreText; }
-    }
-
     public void SetScoresActive(bool state)
     {
-        scoreText[0].transform.parent.gameObject.SetActive(state);
+        scoreText[0].transform.parent.gameObject.SetActive(state); // Sets the parent object of my score object to inactive
     }
 
     public void AddScore(int amount)
     {
         score += amount;
-        Gameplay.Instance.ScoreEvent(this);
+        UpdateScoreText();
     }
-
 
     public void SetPaddle(Paddle paddle)
     {
@@ -39,5 +34,11 @@ public class Team : MonoBehaviour
     public int Score()
     {
         return score;
+    }
+
+    void UpdateScoreText()
+    {
+        scoreText[0].text = score.ToString(); // My score
+        scoreText[1].text = score.ToString(); // Their score
     }
 }

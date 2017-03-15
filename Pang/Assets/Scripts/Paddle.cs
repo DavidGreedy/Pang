@@ -8,15 +8,6 @@ public class Paddle : NetworkBehaviour
     public Vector2 Velocity { get { return transform.position - previousPosition; } }
 
     [SerializeField]
-    protected float speed;
-
-    public float Speed
-    {
-        get { return speed; }
-        set { speed = value; }
-    }
-
-    [SerializeField]
     private float hitForce;
 
     public float HitForce { get { return hitForce; } }

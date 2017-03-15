@@ -98,7 +98,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &65661679287657442
 BoxCollider:
@@ -106,9 +106,9 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1448200689599328}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7665e6674f26cab4b9fbc96db1bb603f, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -293,7 +293,7 @@ TrailRenderer:
     numCornerVertices: 0
     numCapVertices: 20
     alignment: 0
-    textureMode: 0
+    textureMode: 1
   m_MinVertexDistance: 0.01
   m_Autodestruct: 0
 --- !u!114 &114421611782431550
@@ -322,7 +322,7 @@ SphereCollider:
   m_GameObject: {fileID: 1448200689599328}
   m_Material: {fileID: 13400000, guid: 7665e6674f26cab4b9fbc96db1bb603f, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
