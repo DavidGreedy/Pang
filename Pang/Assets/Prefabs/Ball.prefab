@@ -308,7 +308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 54456202989683790}
-  pixelEffect: {fileID: 0}
+  pixelEffect: {fileID: 198779478195489114, guid: 3b9af6e43697ff24995ff75bc7a13508,
+    type: 2}
   maxSpin: 0.5
   spinModifier: 5
   colorScheme: 3
