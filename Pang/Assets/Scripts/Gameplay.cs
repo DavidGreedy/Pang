@@ -5,8 +5,17 @@ using UnityEngine.UI;
 
 public class Gameplay : Singleton<Gameplay>
 {
-    public int targetScore = 10;
-    public int difficulty = 1;
+    public float targetScore = 10;
+    public float difficulty = 1;
+
+    public Slider diffSlider;
+    public Slider scoreSlider;
+
+    public Text finalScore;
+    public GameObject winCanvas;
+
+    public Text obstacleButton;
+    public bool obstacleMode;
 
     [SerializeField]
     private Team[] teams;
@@ -26,6 +35,7 @@ public class Gameplay : Singleton<Gameplay>
     private void Awake()
     {
         base.Awake();
+        obstacleButton.color = Color.red;
         teams[0].SetScoresActive(false);
         teams[1].SetScoresActive(false);
     }
@@ -34,11 +44,13 @@ public class Gameplay : Singleton<Gameplay>
     {
         Paddle p = Instantiate(paddlePrefab, -players[0].transform.position, Quaternion.LookRotation(new Vector3(0, 0, -1)));
         players[1] = p.gameObject.AddComponent<AIPaddle>();
-        players[1].GetComponent<AIPaddle>().Init(p, ball, difficulty);
+        players[1].GetComponent<AIPaddle>().Init(p, ball, (int)difficulty);
     }
 
     public void Begin()
     {
+        targetScore = scoreSlider.value;
+        difficulty = diffSlider.value;
         ball = Instantiate(ballPrefab);
         Paddle p1Paddle = Instantiate(paddlePrefab);
         players[0].GivePaddle(p1Paddle);
@@ -50,6 +62,19 @@ public class Gameplay : Singleton<Gameplay>
 
         //SetPlayerToServe();
         ball.Reset();
+    }
+
+    public void obsMode()
+    {
+        obstacleMode = !obstacleMode;
+        if (obstacleMode == true)
+        {
+            obstacleButton.color = Color.green;
+        }
+        else
+        {
+            obstacleButton.color = Color.red;
+        }
     }
 
     void SetPlayerToServe()
@@ -95,7 +120,8 @@ public class Gameplay : Singleton<Gameplay>
 
     void ActivateWinScreen()
     {
-        //winCanvas.gameObject.SetActive(true);
+        winCanvas.gameObject.SetActive(true);
+        finalScore.text = string.Format("{0}:{1}", teams[0].Score(), teams[1].Score());
         print("WINNER");
     }
 

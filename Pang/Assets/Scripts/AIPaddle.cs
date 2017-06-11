@@ -7,7 +7,7 @@ public class AIPaddle : PaddleController
     public void Init(Paddle paddle, Ball ball, int difficulty)
     {
         controlledPaddle = paddle;
-        controlledPaddle.transform.position = new Vector3(controlledPaddle.transform.position.x, 0, 5);
+        controlledPaddle.transform.position = new Vector3(controlledPaddle.transform.position.x, 0, 9.8f);
         speed = difficulty;
         controlledPaddle.OnSetServe += BeginServe;
         targetBall = ball;

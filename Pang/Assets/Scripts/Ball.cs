@@ -8,6 +8,7 @@ public class Ball : NetworkBehaviour
     private Rigidbody rigidbody;
     private Paddle bouncePaddle;
 
+    public ParticleSystem pixelEffect;
     public Particle hitparticle;
 
     public event Action OnHit;
@@ -18,7 +19,7 @@ public class Ball : NetworkBehaviour
 
     public float maxSpin;
 
-    public float spinModifier = 10f;
+    public float spinModifier = 1f;
 
     [SerializeField]
     private LineController.ColorScheme colorScheme;
@@ -26,7 +27,6 @@ public class Ball : NetworkBehaviour
     [SerializeField]
     private Renderer[] renderers;
 
-    private Vector2 spinTarget = Vector2.zero;
 
     public void Serve(Paddle paddle)
     {
@@ -52,7 +52,7 @@ public class Ball : NetworkBehaviour
     {
         if (isActive)
         {
-            rigidbody.AddForce(spinTarget - (Vector2)transform.position.normalized * spinModifier * 0.2f);
+            rigidbody.AddForce((Vector2)transform.position.normalized * spinModifier * 0.2f);
         }
     }
 
@@ -74,13 +74,18 @@ public class Ball : NetworkBehaviour
         {
             bouncePaddle = other.transform.GetComponent<Paddle>();
             rigidbody.AddForce(((Vector2)bouncePaddle.Velocity * spinModifier * 10f));
+            if (other.gameObject.tag == "Wall")
+            {
+                Debug.Log("Wall");
+                pixelEffect.transform.position = other.contacts[0].point;
+                pixelEffect.transform.rotation = Quaternion.FromToRotation(Vector3.forward, other.contacts[0].normal);
+                pixelEffect.Play();
+            }
         }
 
-        //if (other.gameObject.tag == "Wall")
-        //{
-
-        //}
     }
+
+ 
 
     private void OnDrawGizmosSelected()
     {

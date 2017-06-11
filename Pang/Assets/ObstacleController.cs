@@ -14,19 +14,7 @@ public class ObstacleController : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        
-	}
-
-    public void StartObstacles()
-    {
-        SetRate();
         StartCoroutine(BeginObstacles());
-    }
-
-
-    public void SetRate()
-    {
-
     }
 
     public IEnumerator BeginObstacles()
