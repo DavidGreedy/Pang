@@ -8,6 +8,8 @@ public class Ball : NetworkBehaviour
     private Rigidbody rigidbody;
     private Paddle bouncePaddle;
 
+    public Particle hitparticle;
+
     public event Action OnHit;
     public event Action<Paddle> OnServe;
     public event Action<Paddle> OnScore;
@@ -73,6 +75,11 @@ public class Ball : NetworkBehaviour
             bouncePaddle = other.transform.GetComponent<Paddle>();
             rigidbody.AddForce(((Vector2)bouncePaddle.Velocity * spinModifier * 10f));
         }
+
+        //if (other.gameObject.tag == "Wall")
+        //{
+
+        //}
     }
 
     private void OnDrawGizmosSelected()
